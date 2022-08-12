@@ -1,9 +1,14 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
+import Link from 'next/link';
 import styles from '../styles/Home.module.css'
 
+import Nav from '../components/nav';
+
 import * as contentful from 'contentful';
+import Album from './albums/[id]';
+import { getAlbumData } from '../api/contentful';
+
 
 const Home: NextPage = () => {
    const client = contentful.createClient({
@@ -11,14 +16,6 @@ const Home: NextPage = () => {
     accessToken: 'kpL8Ke1IaByl2DBbXoCorhKFs0gyt7R4YmzUyLXl2-I'
   })
 
-  client.getEntries().then(entries => {
-    console.log(entries)
-    entries.items.forEach(function (entry) {
-      if (entry.fields.productName) {
-        console.log(entry.fields.productName);
-      }
-    });
-  })
   return (
     <div className={styles.container}>
       <Head>
@@ -30,18 +27,16 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          <a href="/">Christopher Allen Photography</a>
+          <Link href="/">Christopher Allen Photography</Link>
         </h1>
 
-        <nav>
-          {/* dynamically generated links to albums */}
-        </nav>
+        <Nav client={client} />
 
         {/* hero image */}
       </main>
 
       <footer>
-        <p>Christopher Allen Photography, Whitinsville, Massachusetts, email to "contact" @ this website.</p>
+        <p>Christopher Allen Photography, Whitinsville, Massachusetts, email to &quot;contact&quot; @ this website.</p>
         <p>© {new Date().getFullYear()} Christopher Allen Photography. All rights reserved.</p>
       </footer>
     </div>
