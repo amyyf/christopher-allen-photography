@@ -4,6 +4,7 @@ import * as contentful from 'contentful';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import type { Album } from "../../types";
 
+// TODO: pass this in correctly!
 const client = contentful.createClient({
   space: 'cwx5ke1iw7ue',
   accessToken: 'kpL8Ke1IaByl2DBbXoCorhKFs0gyt7R4YmzUyLXl2-I'

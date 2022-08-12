@@ -10,14 +10,13 @@ export function getEntries (client: contentful.ContentfulClientApi) {
   })
 }
 
-export function getNav (client: contentful.ContentfulClientApi) {
-  return client.getEntries<Album>().then(entries => {
-    const nav = entries.items.map(item => ({
-      title: item.fields.title,
-      contentfulId: item.sys.id
-    }))
-    return nav;
-  })
+export async function getNav (client: contentful.ContentfulClientApi) {
+  const entries = await client.getEntries<Album>();
+  const nav = entries.items.map(item => ({
+    title: item.fields.title,
+    contentfulId: item.sys.id
+  }));
+  return nav;
 }
 
 export async function generatePaths(client: contentful.ContentfulClientApi) {

@@ -1,10 +1,10 @@
-import { getNav } from '../api/contentful';
+import type { NavData } from "../types";
 
-import * as contentful from 'contentful';
-
-export default function Nav ({client}: { client: contentful.ContentfulClientApi}) {
-  const navContent = getNav(client);
-  console.log(navContent);
-  
-  return <nav>this is a nav bar</nav>
+export const Nav = ({ navData }: { navData: NavData[] }) => {
+  console.log(navData)
+  return (
+    <>
+      {navData.map(navItem => <p key={navItem.contentfulId}>{navItem.contentfulId}, {navItem.title} </p>)}
+    </>
+  );
 }

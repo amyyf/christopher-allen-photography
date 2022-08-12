@@ -3,18 +3,27 @@ import Head from 'next/head'
 import Link from 'next/link';
 import styles from '../styles/Home.module.css'
 
-import Nav from '../components/nav';
+import { Nav } from '../components/nav';
 
 import * as contentful from 'contentful';
-import Album from './albums/[id]';
-import { getAlbumData } from '../api/contentful';
-
+import { getNav } from '../api/contentful';
+import { useEffect, useMemo, useState } from 'react';
 
 const Home: NextPage = () => {
-   const client = contentful.createClient({
+  const [navData, setNavData] = useState<{title: string; contentfulId: string}[]>([{title: '', contentfulId: ''}]);
+   const client = useMemo(() => contentful.createClient({
     space: 'cwx5ke1iw7ue',
     accessToken: 'kpL8Ke1IaByl2DBbXoCorhKFs0gyt7R4YmzUyLXl2-I'
-  })
+  }), [])
+
+  useEffect(() => {
+    console.log('using effect')
+    async function getNavData () {
+      const data = await getNav(client);
+      setNavData(data);
+    }
+    getNavData();
+  }, [client])
 
   return (
     <div className={styles.container}>
@@ -30,7 +39,7 @@ const Home: NextPage = () => {
           <Link href="/">Christopher Allen Photography</Link>
         </h1>
 
-        <Nav client={client} />
+        <Nav navData={navData} />
 
         {/* hero image */}
       </main>
@@ -43,4 +52,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default Home;
