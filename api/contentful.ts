@@ -1,37 +1,45 @@
-import * as contentful from "contentful";
+import * as contentful from 'contentful';
 
-import type { Album } from "../types";
+import type { Album } from '../types';
 
-export async function getNav (client: contentful.ContentfulClientApi) {
+export async function getNav(client: contentful.ContentfulClientApi) {
   const entries = await client.getEntries<Album>();
-  const nav = entries.items.map(item => ({
+  const nav = entries.items.map((item) => ({
     title: item.fields.title,
-    contentfulId: item.sys.id
+    contentfulId: item.sys.id,
   }));
   return nav;
 }
 
-export async function generateAlbumPaths(client: contentful.ContentfulClientApi) {
+export async function generateAlbumPaths(
+  client: contentful.ContentfulClientApi,
+) {
   const navInfo = await getNav(client);
-  return navInfo.map(entry => {
+  return navInfo.map((entry) => {
     // TODO: would be nice to use album titles instead of ids for the slug
     return {
       params: {
-        id: entry.contentfulId
-      }
-    }
-  })
+        id: entry.contentfulId,
+      },
+    };
+  });
 }
 
-export async function getAlbumData(client: contentful.ContentfulClientApi, id: string) {
-  const data = await client.getEntry(id).then(entry => entry);
+export async function getAlbumData(
+  client: contentful.ContentfulClientApi,
+  id: string,
+) {
+  const data = await client.getEntry(id).then((entry) => entry);
   return {
     id,
-    ...data
-  }
+    ...data,
+  };
 }
 
-export async function getImage(client: contentful.ContentfulClientApi, imageId: string) {
-  const asset = await client.getAsset(imageId)
+export async function getImage(
+  client: contentful.ContentfulClientApi,
+  imageId: string,
+) {
+  const asset = await client.getAsset(imageId);
   return asset;
 }
