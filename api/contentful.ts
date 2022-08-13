@@ -2,14 +2,6 @@ import * as contentful from "contentful";
 
 import type { Album } from "../types";
 
-export function getEntries (client: contentful.ContentfulClientApi) {
-   client.getEntries().then(entries => {
-    entries.items.forEach(function (entry) {
-      console.log(entry)
-    });
-  })
-}
-
 export async function getNav (client: contentful.ContentfulClientApi) {
   const entries = await client.getEntries<Album>();
   const nav = entries.items.map(item => ({
@@ -33,7 +25,6 @@ export async function generatePaths(client: contentful.ContentfulClientApi) {
 
 export async function getAlbumData(client: contentful.ContentfulClientApi, id: string) {
   const data = await client.getEntry(id).then(entry => entry);
-  console.log('getting album data', data)
   return {
     id,
     ...data

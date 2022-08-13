@@ -11,13 +11,12 @@ import { useEffect, useMemo, useState } from 'react';
 
 const Home: NextPage = () => {
   const [navData, setNavData] = useState<{title: string; contentfulId: string}[]>([{title: '', contentfulId: ''}]);
-   const client = useMemo(() => contentful.createClient({
+  const client = useMemo(() => contentful.createClient({
     space: 'cwx5ke1iw7ue',
     accessToken: 'kpL8Ke1IaByl2DBbXoCorhKFs0gyt7R4YmzUyLXl2-I'
   }), [])
 
   useEffect(() => {
-    console.log('using effect')
     async function getNavData () {
       const data = await getNav(client);
       setNavData(data);

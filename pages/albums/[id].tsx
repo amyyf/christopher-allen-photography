@@ -1,4 +1,5 @@
 import { generatePaths, getAlbumData } from "../../api/contentful";
+import Image from "next/image";
 
 import * as contentful from 'contentful';
 import { GetStaticProps, GetStaticPaths } from 'next';
@@ -29,6 +30,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 export default function Album({ id, fields }: { id: string, fields: Album}) {
-  console.log(id, fields)
-  return <div>{fields.title}</div>;
+  const images: contentful.Asset[] = fields.album.map(image => image);
+  console.log(images.length)
+  return (
+    <>
+      <h2>{fields.title}</h2>
+      {images.map(image => <Image key={image.fields.title} alt={image.fields.description} src={`https:${image.fields.file.url}`} width={image.fields.file.details.image?.width} height={image.fields.file.details.image?.height} />)}
+    </>
+  );
 }
