@@ -1,5 +1,6 @@
 # To-Do
 
+[ ] Get Contentful data once (React Query wrapper?)
 [ ] Layout wrapper for all routes: <https://nextjs.org/docs/basic-features/layouts#single-shared-layout-with-custom-app>
 [x] Dynamic routing
 [ ] Routing between images in album - back/forward nav
