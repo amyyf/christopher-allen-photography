@@ -11,7 +11,7 @@ export async function getNav (client: contentful.ContentfulClientApi) {
   return nav;
 }
 
-export async function generatePaths(client: contentful.ContentfulClientApi) {
+export async function generateAlbumPaths(client: contentful.ContentfulClientApi) {
   const navInfo = await getNav(client);
   return navInfo.map(entry => {
     // TODO: would be nice to use album titles instead of ids for the slug
@@ -29,4 +29,9 @@ export async function getAlbumData(client: contentful.ContentfulClientApi, id: s
     id,
     ...data
   }
+}
+
+export async function getImage(client: contentful.ContentfulClientApi, imageId: string) {
+  const asset = await client.getAsset(imageId)
+  return asset;
 }
