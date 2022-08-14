@@ -28,12 +28,14 @@ export default function Album() {
       <h2>{title}</h2>
       {images.map((image) => (
         <Link key={image.fields.title} href={`/albums/${id}/${image.sys.id}`}>
-          <Image
-            alt={image.fields.description}
-            src={`https:${image.fields.file.url}`}
-            width={image.fields.file.details.image?.width}
-            height={image.fields.file.details.image?.height}
-          />
+          <a>
+            <Image
+              alt={image.fields.description}
+              src={`https:${image.fields.file.url}`}
+              width={image.fields.file.details.image?.width}
+              height={image.fields.file.details.image?.height}
+            />
+          </a>
         </Link>
       ))}
     </>

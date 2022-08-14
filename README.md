@@ -1,6 +1,6 @@
 # To-Do
 
-[ ] Get Contentful data once (React Query wrapper?)
+[x] Get Contentful data once (React Query wrapper?)
 [x] Dynamic routing
 [ ] Routing between images in album - back/forward nav
 [ ] Upwards nav back to home
