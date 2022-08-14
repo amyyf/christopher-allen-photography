@@ -8,13 +8,13 @@ import { useQuery } from '@tanstack/react-query';
 
 export default function Album() {
   const router = useRouter();
-  const { id } = router.query;
+  const { albumId } = router.query;
 
   const { isLoading, isError, data } = useQuery(
-    ['album', id],
-    () => getAlbumData(id),
+    ['album', albumId],
+    () => getAlbumData(albumId),
     {
-      enabled: !!id && typeof id === 'string',
+      enabled: !!albumId && typeof albumId === 'string',
     },
   );
   if (isLoading) return <div>Loading</div>;
@@ -27,7 +27,10 @@ export default function Album() {
     <>
       <h2>{title}</h2>
       {images.map((image) => (
-        <Link key={image.fields.title} href={`/albums/${id}/${image.sys.id}`}>
+        <Link
+          key={image.fields.title}
+          href={`/albums/${albumId}/${image.sys.id}`}
+        >
           <a>
             <Image
               alt={image.fields.description}

@@ -3,11 +3,9 @@ import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 
-import { Nav } from '../components/nav';
+import { NavBar } from '../components/NavBar';
 
-import * as contentful from 'contentful';
 import { getClientData, getNav } from '../api/contentful';
-import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 const Home: NextPage = () => {
@@ -35,7 +33,7 @@ const Home: NextPage = () => {
           <Link href="/">Christopher Allen Photography</Link>
         </h1>
 
-        <Nav navData={navData} />
+        <NavBar navData={navData} />
 
         {/* hero image */}
       </main>
