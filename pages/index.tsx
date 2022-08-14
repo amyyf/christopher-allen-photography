@@ -6,29 +6,17 @@ import styles from '../styles/Home.module.css';
 import { Nav } from '../components/nav';
 
 import * as contentful from 'contentful';
-import { getNav } from '../api/contentful';
-import { useEffect, useMemo, useState } from 'react';
+import { getClientData, getNav } from '../api/contentful';
+import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 const Home: NextPage = () => {
-  const [navData, setNavData] = useState<
-    { title: string; contentfulId: string }[]
-  >([{ title: '', contentfulId: '' }]);
-  const client = useMemo(
-    () =>
-      contentful.createClient({
-        space: 'cwx5ke1iw7ue',
-        accessToken: 'kpL8Ke1IaByl2DBbXoCorhKFs0gyt7R4YmzUyLXl2-I',
-      }),
-    [],
-  );
+  const { isLoading, isError, data } = useQuery(['albums'], getClientData);
+  console.log(data);
 
-  useEffect(() => {
-    async function getNavData() {
-      const data = await getNav(client);
-      setNavData(data);
-    }
-    getNavData();
-  }, [client]);
+  if (isLoading) return <div>Loading</div>;
+  if (isError) return <div>Error</div>;
+  const navData = getNav(data);
 
   return (
     <div className={styles.container}>
