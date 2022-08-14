@@ -1,11 +1,11 @@
-import { generateAlbumPaths, getAlbumData } from '../../../api/contentful';
+import { getAlbumData } from '../../../api/contentful';
 import Image from 'next/image';
 
 import * as contentful from 'contentful';
-import { GetStaticProps, GetStaticPaths } from 'next';
 import type { Album } from '../../../types';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 // TODO: pass this in correctly!
 const client = contentful.createClient({
@@ -13,29 +13,24 @@ const client = contentful.createClient({
   accessToken: 'kpL8Ke1IaByl2DBbXoCorhKFs0gyt7R4YmzUyLXl2-I',
 });
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await generateAlbumPaths(client);
-  return {
-    paths,
-    fallback: false,
-  };
-};
+export default function Album() {
+  const [images, setImages] = useState<contentful.Asset[] | null>(null);
+  const [title, setTitle] = useState('');
+  const router = useRouter();
+  const { id } = router.query;
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const albumData = await getAlbumData(client, params?.id as string);
-  return {
-    props: {
-      id: albumData.id,
-      fields: albumData.fields,
-    },
-  };
-};
+  useEffect(() => {
+    async function getData(id: string) {
+      const data = await getAlbumData(client, id);
+      setImages(data.album);
+      setTitle(data.title);
+    }
+    if (id && typeof id === 'string' && !images) getData(id);
+  });
 
-export default function Album({ id, fields }: { id: string; fields: Album }) {
-  const images: contentful.Asset[] = fields.album.map((image) => image);
-  return (
+  return images ? (
     <>
-      <h2>{fields.title}</h2>
+      <h2>{title}</h2>
       {images.map((image) => (
         <Link key={image.fields.title} href={`/albums/${id}/${image.sys.id}`}>
           <Image
@@ -47,5 +42,7 @@ export default function Album({ id, fields }: { id: string; fields: Album }) {
         </Link>
       ))}
     </>
+  ) : (
+    <div>no images</div>
   );
 }
