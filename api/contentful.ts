@@ -20,10 +20,25 @@ export function getNav(entries: contentful.EntryCollection<Album>) {
   return nav;
 }
 
+export function getPrevAndNextImages(albumData: Album, currentImageId: string) {
+  const currentIndex = albumData.album.findIndex(
+    (el) => el.sys.id === currentImageId,
+  );
+  // return an empty string if the current index is the first or last of the array
+  return {
+    previousImageId:
+      currentIndex - 1 >= 0 ? albumData.album[currentIndex - 1].sys.id : null,
+    nextImageId:
+      currentIndex + 1 < albumData.album.length
+        ? albumData.album[currentIndex + 1].sys.id
+        : null,
+  };
+}
+
 export async function getAlbumData(id: string | string[] | undefined) {
   if (!id || typeof id !== 'string')
     return Promise.reject(new Error('No valid ID provided'));
-  const data = await client.getEntry<Album>(id).then((entry) => entry);
+  const data = await client.getEntry<Album>(id);
   return {
     title: data.fields.title,
     album: data.fields.album,
