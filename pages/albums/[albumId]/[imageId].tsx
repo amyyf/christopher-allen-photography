@@ -7,6 +7,8 @@ import {
 import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
+import Loading from '../../../components/Loading';
+import Error from '../../../components/Error';
 
 export default function ImageWrapper() {
   const router = useRouter();
@@ -25,9 +27,9 @@ export default function ImageWrapper() {
     enabled: !!albumId && typeof albumId === 'string',
   });
 
-  if (isLoading || isLoadingAlbumData) return <div>Loading</div>;
+  if (isLoading || isLoadingAlbumData) return <Loading />;
   if (isError || isErrorAlbumData || typeof imageId !== 'string' || !imageId)
-    return <div>Error</div>;
+    return <Error message="The image could not be found. Please try again." />;
 
   const { previousImageId, nextImageId } = getPrevAndNextImages(
     albumData,

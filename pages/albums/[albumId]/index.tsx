@@ -5,6 +5,8 @@ import type { Album } from '../../../types';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
+import Loading from '../../../components/Loading';
+import Error from '../../../components/Error';
 
 export default function Album() {
   const router = useRouter();
@@ -17,8 +19,11 @@ export default function Album() {
       enabled: !!albumId && typeof albumId === 'string',
     },
   );
-  if (isLoading) return <div>Loading</div>;
-  if (isError) return <div>Error</div>;
+  if (isLoading) return <Loading />;
+  if (isError)
+    return (
+      <Error message="Sorry, the images could not be found. Please try again." />
+    );
 
   const images = data.album;
   const title = data.title;

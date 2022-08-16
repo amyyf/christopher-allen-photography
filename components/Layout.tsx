@@ -4,12 +4,17 @@ import Link from 'next/link';
 import React from 'react';
 import { getClientData, getNav } from '../api/contentful';
 import styles from '../styles/Home.module.css';
+import Loading from './Loading';
+import Error from './Error';
 import { NavBar } from './NavBar';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { isLoading, isError, data } = useQuery(['albums'], getClientData);
-  if (isLoading) return <div>Loading</div>;
-  if (isError) return <div>Error</div>;
+  if (isLoading) return <Loading />;
+  if (isError)
+    return (
+      <Error message="Something went wrong getting the data, please try again." />
+    );
   const navData = getNav(data);
 
   return (

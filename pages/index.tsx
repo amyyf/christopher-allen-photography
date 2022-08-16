@@ -3,6 +3,8 @@ import type { NextPage } from 'next';
 import { getHomepagePhoto } from '../api/contentful';
 import styles from '../styles/Home.module.css';
 import Image from 'next/image';
+import Loading from '../components/Loading';
+import Error from '../components/Error';
 
 const Home: NextPage = () => {
   const { isLoading, isError, data } = useQuery(
@@ -10,8 +12,11 @@ const Home: NextPage = () => {
     getHomepagePhoto,
   );
 
-  if (isLoading) return <div>Loading</div>;
-  if (isError) return <div>Error</div>;
+  if (isLoading) return <Loading />;
+  if (isError)
+    return (
+      <Error message="An error occurred fetching site data, please try again." />
+    );
 
   return (
     <div className={styles.container}>
