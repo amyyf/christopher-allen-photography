@@ -27,18 +27,22 @@ export function getNav(entries: contentful.EntryCollection<Album>) {
   return nav;
 }
 
+// This navigation through an album will wrap at the beginning and end:
+// If the current image is the first in the album, the "previous" image will be the last in album.
+// If the current image is the last in the album, the "next" image will be the first in album.
 export function getPrevAndNextImages(albumData: Album, currentImageId: string) {
   const currentIndex = albumData.album.findIndex(
     (el) => el.sys.id === currentImageId,
   );
-  // return an empty string if the current index is the first or last of the array
   return {
     previousImageId:
-      currentIndex - 1 >= 0 ? albumData.album[currentIndex - 1].sys.id : null,
+      currentIndex === 0
+        ? albumData.album[albumData.album.length - 1].sys.id
+        : albumData.album[currentIndex - 1].sys.id,
     nextImageId:
-      currentIndex + 1 < albumData.album.length
-        ? albumData.album[currentIndex + 1].sys.id
-        : null,
+      currentIndex + 1 === albumData.album.length
+        ? albumData.album[0].sys.id
+        : albumData.album[currentIndex + 1].sys.id,
   };
 }
 
