@@ -30,22 +30,26 @@ export default function Album() {
 
   return (
     <>
-      <h2>{title}</h2>
-      {images.map((image) => (
-        <Link
-          key={image.fields.title}
-          href={`/albums/${albumId}/${image.sys.id}`}
-        >
-          <a>
-            <Image
-              alt={image.fields.description}
-              src={`https:${image.fields.file.url}`}
-              width={image.fields.file.details.image?.width}
-              height={image.fields.file.details.image?.height}
-            />
-          </a>
-        </Link>
-      ))}
+      <section className="grid gap-5 grid-cols-album">
+        <h2 className="self-center justify-self-center lg:col-span-2 lg:col-start-2 lg:row-start-2 text-xl">
+          {title}
+        </h2>
+        {images.map((image) => (
+          <Link
+            key={image.fields.title}
+            href={`/albums/${albumId}/${image.sys.id}`}
+          >
+            <a>
+              <Image
+                alt={image.fields.description}
+                src={`https:${image.fields.file.url}`}
+                width={image.fields.file.details.image?.width}
+                height={image.fields.file.details.image?.height}
+              />
+            </a>
+          </Link>
+        ))}
+      </section>
     </>
   );
 }

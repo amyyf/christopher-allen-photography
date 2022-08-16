@@ -37,15 +37,68 @@ export default function ImageWrapper() {
   );
 
   return (
-    <>
+    <section className="text-center">
       <div>
         {previousImageId && (
-          <Link href={`/albums/${albumId}/${previousImageId}`}>previous</Link>
+          <Link href={`/albums/${albumId}/${previousImageId}`}>
+            <a className="inline-block">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M7 16l-4-4m0 0l4-4m-4 4h18"
+                />
+              </svg>
+            </a>
+          </Link>
         )}
+
         {/* is this the UX I want to handle forward/back browser routing?? */}
-        <Link href={`/albums/${albumId}`}>up</Link>
+        <Link href={`/albums/${albumId}`}>
+          <a className="inline-block">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M8 7l4-4m0 0l4 4m-4-4v18"
+              />
+            </svg>
+          </a>
+        </Link>
+
         {nextImageId && (
-          <Link href={`/albums/${albumId}/${nextImageId}`}>next</Link>
+          <Link href={`/albums/${albumId}/${nextImageId}`}>
+            <a className="inline-block">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </a>
+          </Link>
         )}
       </div>
       <Image
@@ -54,6 +107,6 @@ export default function ImageWrapper() {
         width={data.fields.file.details.image?.width}
         height={data.fields.file.details.image?.height}
       />
-    </>
+    </section>
   );
 }

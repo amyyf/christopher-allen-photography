@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import type { NextPage } from 'next';
 import { getHomepagePhoto } from '../api/contentful';
-import styles from '../styles/Home.module.css';
 import Image from 'next/image';
 import Loading from '../components/Loading';
 import Error from '../components/Error';
@@ -19,7 +18,7 @@ const Home: NextPage = () => {
     );
 
   return (
-    <div className={styles.container}>
+    <div className="text-center">
       <Image
         alt={data.items[0].fields.image.fields.description}
         src={`https:${data.items[0].fields.image.fields.file.url}`}

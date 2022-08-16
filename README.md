@@ -7,8 +7,9 @@
 [x] Basic album page
 [x] Basic image page
 [x] Layout wrapper for all routes: <https://nextjs.org/docs/basic-features/layouts#single-shared-layout-with-custom-app>
-[ ] Informative error messaging
-[ ] Styles! Responsive!
+[x] Informative error messaging
+[x] Styles! Responsive!
+[ ] Fix nav arrows in galleries to wrap to beginning
 [ ] Size images from Contentful appropriately for album layout
 [ ] Pretty urls (maybe, nice to have)
 
