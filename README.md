@@ -6,7 +6,7 @@
 [x] Upwards nav back to home
 [x] Basic album page
 [x] Basic image page
-[ ] Layout wrapper for all routes: <https://nextjs.org/docs/basic-features/layouts#single-shared-layout-with-custom-app>
+[x] Layout wrapper for all routes: <https://nextjs.org/docs/basic-features/layouts#single-shared-layout-with-custom-app>
 [ ] Informative error messaging
 [ ] Styles! Responsive!
 [ ] Size images from Contentful appropriately for album layout

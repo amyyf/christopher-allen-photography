@@ -1,14 +1,21 @@
 import * as contentful from 'contentful';
 
-import type { Album } from '../types';
+import type { Album, HomepagePhoto } from '../types';
 
 const client = contentful.createClient({
   space: 'cwx5ke1iw7ue',
   accessToken: 'kpL8Ke1IaByl2DBbXoCorhKFs0gyt7R4YmzUyLXl2-I',
 });
 
+export async function getHomepagePhoto() {
+  const photo = await client.getEntries<HomepagePhoto>({
+    content_type: 'homepagePhoto',
+  });
+  return photo;
+}
+
 export async function getClientData() {
-  const entries = await client.getEntries<Album>();
+  const entries = await client.getEntries<Album>({ content_type: 'album' });
   return entries;
 }
 
