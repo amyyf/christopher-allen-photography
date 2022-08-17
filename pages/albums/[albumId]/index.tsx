@@ -31,7 +31,7 @@ export default function Album() {
   return (
     <>
       <section className="grid gap-5 grid-cols-album">
-        <h2 className="self-center justify-self-center md:col-start-2 md:row-start-2 text-xl">
+        <h2 className="self-center justify-self-center md:col-start-2 md:row-start-2 text-xl text-zinc-300">
           {title}
         </h2>
         {images.map((image) => (

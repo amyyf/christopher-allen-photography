@@ -3,7 +3,7 @@ import type { NavData } from '../types';
 
 export const NavBar = ({ navData }: { navData: NavData[] }) => {
   return (
-    <nav className="flex justify-end mr-4 md:mr-8">
+    <nav className="flex justify-end mr-4 md:mr-8 text-zinc-400">
       {navData.map((navItem) => (
         <Link
           key={navItem.contentfulId}

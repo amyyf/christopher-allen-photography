@@ -28,9 +28,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 className="text-4xl border-b-2 mt-4">
+      <h1 className="text-4xl border-b-2 mt-4 border-zinc-600">
         <Link href="/">
-          <a className="ml-4 md:ml-8">
+          <a className="ml-4 md:ml-8 text-zinc-400">
             Christopher Allen <span className="text-2xl">Photography</span>
           </a>
         </Link>
@@ -39,7 +39,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <main className="m-8 max-w-screen-xl xl:mx-auto">{children}</main>
 
-      <footer className="text-center text-sm border-t-2 p-4">
+      <footer className="text-center text-sm text-zinc-400 border-t-2 border-zinc-600 p-4">
         <p>
           Christopher Allen Photography, Whitinsville, Massachusetts, email to
           &quot;contact&quot; @ this website.
