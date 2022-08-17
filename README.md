@@ -10,7 +10,7 @@
 [x] Informative error messaging
 [x] Styles! Responsive!
 [x] Fix nav arrows in galleries to wrap to beginning
-[ ] Size images from Contentful appropriately for album layout
+[ ] Size images from Contentful appropriately for album layout; can images be pre-fetched for speed?
 [ ] Pretty urls (maybe, nice to have)
 
 ## Dev instructions

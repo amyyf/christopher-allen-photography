@@ -1,3 +1,4 @@
 export default function Loading() {
-  return <div>loading</div>;
+  // TODO: add a spinner here?
+  return <div></div>;
 }
