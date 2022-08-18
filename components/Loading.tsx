@@ -10,6 +10,7 @@ export default function Loading() {
       >
         <defs>
           <linearGradient id="myGradient" gradientTransform="rotate(90)">
+            {/* todo: use theme colors */}
             <stop offset="25%" stopColor="black" />
             <stop offset="95%" stopColor="gray" />
           </linearGradient>

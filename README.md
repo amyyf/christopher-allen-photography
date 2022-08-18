@@ -11,8 +11,10 @@
 [x] Styles! Responsive!
 [x] Fix nav arrows in galleries to wrap to beginning
 [ ] Page for all albums
-[ ] Contentful credit in footer
+[ ] Nav bar different mobile layout?
+[ ] Contentful credit in footer?
 [ ] Finalize fonts and color scheme
+[ ] Hover styles
 [ ] Finalize layout (footer at botttom of viewport, height of loading spinner, grid content) to minimize content shifting
 [ ] Size images from Contentful appropriately for album layout; can images be pre-fetched for speed?
 [ ] Pretty urls (maybe, nice to have)

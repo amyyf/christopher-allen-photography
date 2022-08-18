@@ -38,7 +38,6 @@ export default function Album() {
           <Link
             key={image.fields.title}
             href={`/albums/${albumId}/${image.sys.id}`}
-            prefetch
           >
             <a>
               <Image

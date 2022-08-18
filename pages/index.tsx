@@ -4,6 +4,7 @@ import { getHomepagePhoto } from '../api/contentful';
 import Image from 'next/image';
 import Loading from '../components/Loading';
 import Error from '../components/Error';
+import Link from 'next/link';
 
 const Home: NextPage = () => {
   const { isLoading, isError, data } = useQuery(
@@ -19,12 +20,18 @@ const Home: NextPage = () => {
 
   return (
     <div className="text-center">
-      <Image
-        alt={data.items[0].fields.image.fields.description}
-        src={`https:${data.items[0].fields.image.fields.file.url}`}
-        width={data.items[0].fields.image.fields.file.details.image?.width}
-        height={data.items[0].fields.image.fields.file.details.image?.height}
-      />
+      <Link href="/albums">
+        <a>
+          <Image
+            alt={data.items[0].fields.image.fields.description}
+            src={`https:${data.items[0].fields.image.fields.file.url}`}
+            width={data.items[0].fields.image.fields.file.details.image?.width}
+            height={
+              data.items[0].fields.image.fields.file.details.image?.height
+            }
+          />
+        </a>
+      </Link>
     </div>
   );
 };
