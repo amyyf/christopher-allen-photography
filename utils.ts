@@ -1,22 +1,18 @@
 export const generatePageTitle = (
   pathname: string,
-  queryOptions: {
-    albumId?: string;
-    imageId?: string;
-  },
+  imageTitle?: string,
+  albumTitle?: string,
 ) => {
-  const title = 'Christopher Allen Photography';
-  // TODO: album titles, image titles should be pretty printed
+  const baseTitle = 'Christopher Allen Photography';
+  // note that the order matters - image title, if it exists, takes precedence over album title
+  const contentTitle = imageTitle ? imageTitle : albumTitle;
+
   switch (pathname) {
     case '/':
-      return `${title}: Home`;
+      return `${baseTitle}: Home`;
     case '/albums':
-      return `${title}: Albums`;
+      return `${baseTitle}: Albums`;
     default:
-      if (queryOptions.imageId) {
-        return `${title}: ${queryOptions.imageId}`;
-      } else if (queryOptions.albumId) {
-        return `${title}: ${queryOptions.albumId}`;
-      }
+      return contentTitle ? `${baseTitle}: ${contentTitle}` : baseTitle;
   }
 };

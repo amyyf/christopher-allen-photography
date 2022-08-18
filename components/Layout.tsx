@@ -1,8 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import Head from 'next/head';
 import Link from 'next/link';
-import React from 'react';
-import { getClientData, getNav } from '../api/contentful';
+import React, { useEffect, useState } from 'react';
+import {
+  getAlbumData,
+  getClientData,
+  getImage,
+  getNav,
+} from '../api/contentful';
 import Loading from './Loading';
 import Error from './Error';
 import { NavBar } from './NavBar';
@@ -10,15 +15,37 @@ import { useRouter } from 'next/router';
 import { generatePageTitle } from '../utils';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const router = useRouter();
-  const pageTitle = generatePageTitle(router.pathname, router.query);
+  const { pathname, query } = useRouter();
+  const { data: albumTitleData } = useQuery(
+    ['album', query.albumId],
+    () => getAlbumData(query.albumId),
+    {
+      select: (data) => data.title,
+    },
+  );
+  const { data: imageTitleData } = useQuery(
+    ['image', query.imageId],
+    () => getImage(query.imageId),
+    {
+      select: (data) => data.fields.title,
+    },
+  );
+
+  const [pageTitle, setPageTitle] = useState('');
+  useEffect(() => {
+    const title = generatePageTitle(pathname, imageTitleData, albumTitleData);
+    setPageTitle(title);
+  }, [pathname, imageTitleData, albumTitleData]);
 
   const { isLoading, isError, data } = useQuery(['albums'], getClientData);
+
   if (isLoading) return <Loading />;
-  if (isError)
+  if (isError) {
     return (
       <Error message="Something went wrong getting the data, please try again." />
     );
+  }
+
   const navData = getNav(data);
 
   return (
