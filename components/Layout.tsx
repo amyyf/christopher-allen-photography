@@ -6,8 +6,13 @@ import { getClientData, getNav } from '../api/contentful';
 import Loading from './Loading';
 import Error from './Error';
 import { NavBar } from './NavBar';
+import { useRouter } from 'next/router';
+import { generatePageTitle } from '../utils';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
+  const pageTitle = generatePageTitle(router.pathname, router.query);
+
   const { isLoading, isError, data } = useQuery(['albums'], getClientData);
   if (isLoading) return <Loading />;
   if (isError)
@@ -19,7 +24,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Head>
-        <title>Christopher Allen Photography</title>
+        <title>{pageTitle}</title>
         <meta
           name="description"
           content="Fine portrait and landscape photography in Whitinsville, Massachusetts."
