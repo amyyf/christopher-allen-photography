@@ -37,9 +37,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       </h1>
       <NavBar navData={navData} />
 
-      <main className="m-8 max-w-screen-xl xl:mx-auto">{children}</main>
+      <main className="m-8 max-w-screen-xl xl:mx-auto flex-auto">
+        {children}
+      </main>
 
-      <footer className="text-center text-sm text-zinc-400 border-t-2 border-zinc-600 p-4">
+      <footer className="text-center text-sm text-zinc-400 border-t-2 border-zinc-600 p-4 flex-shrink-0">
         <p>
           Christopher Allen Photography, Whitinsville, Massachusetts, email to
           &quot;contact&quot; @ this website.
