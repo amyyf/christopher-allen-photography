@@ -11,7 +11,7 @@
 [x] Styles! Responsive!
 [x] Fix nav arrows in galleries to wrap to beginning
 [x] Page for all albums
-[ ] Dynamic page title
+[x] Dynamic page title
 [ ] Sort albums from Contentful consistently
 [ ] Size images from Contentful appropriately for album layout; can images be pre-fetched for speed?
 [ ] Nav bar different mobile layout?

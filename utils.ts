@@ -1,7 +1,7 @@
 export const generatePageTitle = (
   pathname: string,
-  imageTitle?: string,
-  albumTitle?: string,
+  imageTitle?: string | string[],
+  albumTitle?: string | string[],
 ) => {
   const baseTitle = 'Christopher Allen Photography';
   // note that the order matters - image title, if it exists, takes precedence over album title
