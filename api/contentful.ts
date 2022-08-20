@@ -1,6 +1,6 @@
 import * as contentful from 'contentful';
 
-import type { Album, HomepagePhoto } from '../types';
+import type { Album, HomepagePhoto, NavData } from '../types';
 
 const client = contentful.createClient({
   space: 'cwx5ke1iw7ue',
@@ -14,17 +14,24 @@ export async function getHomepagePhoto() {
   return photo;
 }
 
-export async function getClientData() {
-  const entries = await client.getEntries<Album>({ content_type: 'album' });
-  return entries;
-}
-
-export function getNav(entries: contentful.EntryCollection<Album>) {
-  const nav = entries.items.map((item) => ({
-    title: item.fields.title,
-    contentfulId: item.sys.id,
+export async function getSiteNav(): Promise<NavData[]> {
+  const entries = await client.getEntries<Album>({
+    content_type: 'album',
+    include: 4,
+    select: 'fields.title,sys.id,fields.album',
+  });
+  return entries.items.map((entry) => ({
+    title: entry.fields.title,
+    contentfulId: entry.sys.id,
+    firstImage: {
+      contentfulId: entry.fields.album[0].sys.id,
+      title: entry.fields.album[0].fields.title,
+      description: entry.fields.album[0].fields.description,
+      url: entry.fields.album[0].fields.file.url,
+      height: entry.fields.album[0].fields.file.details.image?.height,
+      width: entry.fields.album[0].fields.file.details.image?.width,
+    },
   }));
-  return nav;
 }
 
 // This navigation through an album will wrap at the beginning and end:

@@ -13,4 +13,12 @@ export type Album = {
 export type NavData = {
   title: string;
   contentfulId: string;
+  firstImage: {
+    contentfulId: contentful.EntryFields.Text;
+    title: contentful.EntryFields.Text;
+    description: contentful.EntryFields.Text;
+    url: contentful.EntryFields.Text;
+    height?: contentful.EntryFields.Number;
+    width?: contentful.EntryFields.Number;
+  };
 };

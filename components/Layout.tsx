@@ -2,12 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import Head from 'next/head';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import {
-  getAlbumData,
-  getClientData,
-  getImage,
-  getNav,
-} from '../api/contentful';
+import { getAlbumData, getImage, getSiteNav } from '../api/contentful';
 import Loading from './Loading';
 import Error from './Error';
 import { NavBar } from './NavBar';
@@ -16,6 +11,8 @@ import { generatePageTitle } from '../utils';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { pathname, query } = useRouter();
+
+  // TODO: use site nav query to generate page titles
   const { data: albumTitleData } = useQuery(
     ['album', query.albumId],
     () => getAlbumData(query.albumId),
@@ -31,13 +28,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     },
   );
 
+  const { isLoading, isError, data } = useQuery(['siteNav'], getSiteNav);
+
   const [pageTitle, setPageTitle] = useState('');
   useEffect(() => {
     const title = generatePageTitle(pathname, imageTitleData, albumTitleData);
     setPageTitle(title);
   }, [pathname, imageTitleData, albumTitleData]);
-
-  const { isLoading, isError, data } = useQuery(['albums'], getClientData);
 
   if (isLoading) return <Loading />;
   if (isError) {
@@ -45,8 +42,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <Error message="Something went wrong getting the data, please try again." />
     );
   }
-
-  const navData = getNav(data);
 
   return (
     <>
@@ -67,7 +62,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </a>
         </Link>
       </h1>
-      <NavBar navData={navData} />
+      <NavBar navData={data} />
 
       <main className="m-8 max-w-screen-xl xl:mx-auto flex-auto">
         {children}

@@ -25,16 +25,13 @@ export default function Album() {
       <Error message="Sorry, the images could not be found. Please try again." />
     );
 
-  const images = data.album;
-  const title = data.title;
-
   return (
     <>
       <section className="grid gap-5 grid-cols-album">
         <h2 className="self-center justify-self-center md:col-start-2 md:row-start-2 text-xl text-zinc-300">
-          {title}
+          {data.title}
         </h2>
-        {images.map((image) => (
+        {data.album.map((image) => (
           <Link
             key={image.fields.title}
             href={`/albums/${albumId}/${image.sys.id}`}
