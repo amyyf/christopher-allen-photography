@@ -1,6 +1,7 @@
 import * as contentful from 'contentful';
 
-import type { Album, HomepagePhoto, NavData } from '../types';
+import type { Album, HomepagePhoto, NavData } from './types';
+import { convertTitleToSlug } from '../utils';
 
 const client = contentful.createClient({
   space: 'cwx5ke1iw7ue',
@@ -17,7 +18,6 @@ export async function getHomepagePhoto() {
 export async function getSiteNav(): Promise<NavData[]> {
   const entries = await client.getEntries<Album>({
     content_type: 'album',
-    include: 4,
     select: 'fields.title,sys.id,fields.album',
   });
   return entries.items.map((entry) => ({
@@ -42,30 +42,57 @@ export function getPrevAndNextImages(albumData: Album, currentImageId: string) {
     (el) => el.sys.id === currentImageId,
   );
   return {
-    previousImageId:
+    previousImageSlug:
       currentIndex === 0
-        ? albumData.album[albumData.album.length - 1].sys.id
-        : albumData.album[currentIndex - 1].sys.id,
-    nextImageId:
+        ? convertTitleToSlug(
+            albumData.album[albumData.album.length - 1].fields.title,
+          )
+        : convertTitleToSlug(albumData.album[currentIndex - 1].fields.title),
+    nextImageSlug:
       currentIndex + 1 === albumData.album.length
-        ? albumData.album[0].sys.id
-        : albumData.album[currentIndex + 1].sys.id,
+        ? convertTitleToSlug(albumData.album[0].fields.title)
+        : convertTitleToSlug(albumData.album[currentIndex + 1].fields.title),
   };
 }
 
-export async function getAlbumData(id: string | string[] | undefined) {
-  if (!id || typeof id !== 'string')
-    return Promise.reject(new Error('No valid ID provided'));
-  const data = await client.getEntry<Album>(id);
+export async function getAlbumData(
+  albumSlug: string | string[] | undefined,
+  navData: NavData[] | undefined,
+) {
+  if (!albumSlug || typeof albumSlug !== 'string')
+    throw new Error('Album title not found');
+  if (!navData) throw new Error('Lookup data for album not found');
+  const albumId = navData.find(
+    (item) => convertTitleToSlug(item.title) === albumSlug,
+  )?.contentfulId;
+  if (!albumId) throw new Error('Album ID could not be found');
+  const data = await client.getEntry<Album>(albumId);
   return {
     title: data.fields.title,
     album: data.fields.album,
   };
 }
 
-export async function getImage(imageId: string | string[] | undefined) {
-  if (!imageId || typeof imageId !== 'string')
+export async function getImage(
+  imageSlug: string | string[] | undefined,
+  albumData: Album | undefined,
+) {
+  if (!imageSlug || typeof imageSlug !== 'string')
     return Promise.reject(new Error('No valid ID provided'));
+  if (!albumData)
+    return Promise.reject(new Error('Lookup data for album not found'));
+  const imageId = albumData.album.find(
+    (image) => convertTitleToSlug(image.fields.title) === imageSlug,
+  )?.sys.id;
+  if (!imageId) return Promise.reject(new Error('Image ID could not be found'));
   const asset = await client.getAsset(imageId);
-  return asset;
+  const { previousImageSlug, nextImageSlug } = getPrevAndNextImages(
+    albumData,
+    imageId,
+  );
+  return {
+    ...asset,
+    previousImageSlug,
+    nextImageSlug,
+  };
 }

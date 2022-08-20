@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import type { NextPage } from 'next';
-import { getHomepagePhoto } from '../api/contentful';
+import { getHomepagePhoto } from '../data/contentful';
 import Image from 'next/image';
 import Loading from '../components/Loading';
 import Error from '../components/Error';
@@ -23,6 +23,7 @@ const Home: NextPage = () => {
       <Link href="/albums">
         <a>
           <Image
+            // TODO: What if there are zero items?
             alt={data.items[0].fields.image.fields.description}
             src={`https:${data.items[0].fields.image.fields.file.url}`}
             width={data.items[0].fields.image.fields.file.details.image?.width}

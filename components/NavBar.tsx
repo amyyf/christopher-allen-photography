@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import type { NavData } from '../types';
+import type { NavData } from '../data/types';
+import { convertTitleToSlug } from '../utils';
 
 export const NavBar = ({ navData }: { navData: NavData[] }) => {
   return (
@@ -7,7 +8,7 @@ export const NavBar = ({ navData }: { navData: NavData[] }) => {
       {navData.map((navItem) => (
         <Link
           key={navItem.contentfulId}
-          href={`/albums/${navItem.contentfulId}`}
+          href={`/albums/${convertTitleToSlug(navItem.title)}`}
         >
           <a className="pl-2">{navItem.title}</a>
         </Link>

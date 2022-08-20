@@ -1,41 +1,25 @@
-import { useQuery } from '@tanstack/react-query';
 import Head from 'next/head';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { getAlbumData, getImage, getSiteNav } from '../api/contentful';
 import Loading from './Loading';
 import Error from './Error';
 import { NavBar } from './NavBar';
 import { useRouter } from 'next/router';
 import { generatePageTitle } from '../utils';
+import { useSiteNavQuery } from '../data/queries';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { pathname, query } = useRouter();
 
-  // TODO: use site nav query to generate page titles
-  const { data: albumTitleData } = useQuery(
-    ['album', query.albumId],
-    () => getAlbumData(query.albumId),
-    {
-      select: (data) => data.title,
-    },
-  );
-  const { data: imageTitleData } = useQuery(
-    ['image', query.imageId],
-    () => getImage(query.imageId),
-    {
-      select: (data) => data.fields.title,
-    },
-  );
-
-  const { isLoading, isError, data } = useQuery(['siteNav'], getSiteNav);
+  const { isLoading, isError, data } = useSiteNavQuery();
 
   const [pageTitle, setPageTitle] = useState('');
   useEffect(() => {
-    const title = generatePageTitle(pathname, imageTitleData, albumTitleData);
+    const title = generatePageTitle(pathname, query.imageSlug, query.albumSlug);
     setPageTitle(title);
-  }, [pathname, imageTitleData, albumTitleData]);
+  }, [pathname, query.imageSlug, query.albumSlug]);
 
+  // TODO: less blunt-force loading and errors, only use where needed. then can maybe split out the boilerplate from the children.
   if (isLoading) return <Loading />;
   if (isError) {
     return (
@@ -51,7 +35,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           name="description"
           content="Fine portrait and landscape photography in Whitinsville, Massachusetts."
         />
-        {/* what to use for the favicon? */}
+        {/* TODO: what to use for the favicon? */}
+        {/* TODO: What about allllll the other metadata shtuff: og, twitter  */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
