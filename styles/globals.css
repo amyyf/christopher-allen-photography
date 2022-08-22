@@ -12,14 +12,6 @@ body {
   background-color: rgb(24 24 27);
 }
 
-/* This positions the footer at the bottom of the window when the content is short. */
-div#__next {
-  /* TODO: DONT DO <---- THAT */
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
 a {
   color: inherit;
   text-decoration: none;

@@ -12,13 +12,14 @@
 [x] Fix nav arrows in galleries to wrap to beginning
 [x] Page for all albums
 [x] Dynamic page title
+[ ] Put loading and error components into appropriate slots
 [ ] Sort albums from Contentful consistently
 [ ] Size images from Contentful appropriately for album layout; can images be pre-fetched for speed?
 [ ] Nav bar different mobile layout?
 [ ] Contentful credit in footer?
 [ ] Finalize fonts and color scheme for all components, including error
 [ ] Hover styles
-[ ] Finalize layout (footer at botttom of viewport, height of loading spinner, grid content) to minimize content shifting
+[ ] Finalize layout (footer at botttom of viewport, loaders, errors, grid content) to minimize content shifting
 [x] Pretty urls (maybe, nice to have)
 
 ## Dev instructions

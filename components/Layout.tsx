@@ -29,7 +29,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <>
+    /* These styles position the footer at the bottom of the window when the content is short. */
+    <div className="flex flex-col h-screen">
       <Head>
         <title>{pageTitle}</title>
         <meta
@@ -64,6 +65,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           reserved.
         </p>
       </footer>
-    </>
+    </div>
   );
 }
