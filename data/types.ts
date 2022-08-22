@@ -7,7 +7,7 @@ export type HomepagePhoto = {
 
 export type Album = {
   title: contentful.EntryFields.Text;
-  album: contentful.Asset[];
+  images: contentful.Asset[];
 };
 
 export type NavData = {

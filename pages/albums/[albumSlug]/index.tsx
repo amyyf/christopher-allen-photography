@@ -26,7 +26,7 @@ export default function Album() {
         <h2 className="self-center justify-self-center md:col-start-2 md:row-start-2 text-xl text-zinc-300">
           {data.title}
         </h2>
-        {data.album.map((image) => (
+        {data.images.map((image) => (
           <Link
             key={image.fields.title}
             href={`/albums/${albumSlug}/${convertTitleToSlug(
