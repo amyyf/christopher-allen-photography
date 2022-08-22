@@ -16,8 +16,9 @@
 [ ] Size images from Contentful appropriately for album layout; can images be pre-fetched for speed?
 -> putting height/width into the Contentful query significantly slowed down image render
 [x] Put loading and error components into appropriate slots
-[ ] Download one static file to host and display as a backup on the homepage
+[x] Download one static file to host and display as a backup on the homepage
 [ ] Possible different mobile and desktop homepage images? (landscape vs portrait dimensions)
+[ ] Limit number of homepage images that can be published (<https://www.contentfulcommunity.com/t/limit-content-entries-by-content-model-type/539/3>)
 [x] Nav bar different mobile layout? -> went with flex-wrap
 [ ] Contentful credit in footer?
 [ ] Finalize fonts and color scheme for all components, including error

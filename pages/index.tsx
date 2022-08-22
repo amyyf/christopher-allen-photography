@@ -3,8 +3,8 @@ import type { NextPage } from 'next';
 import { getHomepagePhoto } from '../data/contentful';
 import Image from 'next/image';
 import Loading from '../components/Loading';
-import Error from '../components/Error';
 import Link from 'next/link';
+import fallbackHome from '../public/fallback-home.jpeg';
 
 const Home: NextPage = () => {
   const { isLoading, isError, data } = useQuery(
@@ -13,24 +13,25 @@ const Home: NextPage = () => {
   );
 
   if (isLoading) return <Loading />;
-  if (isError)
-    return (
-      <Error message="An error occurred while fetching this image, please try again." />
-    );
 
   return (
     <div className="text-center">
       <Link href="/albums">
         <a>
-          <Image
-            // TODO: What if there are zero items?
-            alt={data.items[0].fields.image.fields.description}
-            src={`https:${data.items[0].fields.image.fields.file.url}`}
-            width={data.items[0].fields.image.fields.file.details.image?.width}
-            height={
-              data.items[0].fields.image.fields.file.details.image?.height
-            }
-          />
+          {isError || !data.items[0] ? (
+            <Image alt="A peaceful green field with trees" src={fallbackHome} />
+          ) : (
+            <Image
+              alt={data.items[0].fields.image.fields.description}
+              src={`https:${data.items[0].fields.image.fields.file.url}`}
+              width={
+                data.items[0].fields.image.fields.file.details.image?.width
+              }
+              height={
+                data.items[0].fields.image.fields.file.details.image?.height
+              }
+            />
+          )}
         </a>
       </Link>
     </div>
