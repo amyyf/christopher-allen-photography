@@ -15,9 +15,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   const [pageTitle, setPageTitle] = useState('');
   useEffect(() => {
-    const title = generatePageTitle(pathname, query.imageSlug, query.albumSlug);
+    const title = generatePageTitle(
+      pathname,
+      query.imageSlug,
+      query.albumSlug,
+      data,
+    );
     setPageTitle(title);
-  }, [pathname, query.imageSlug, query.albumSlug]);
+  }, [pathname, query.imageSlug, query.albumSlug, data]);
 
   // TODO: less blunt-force loading and errors, only use where needed. then can maybe split out the boilerplate from the children.
   if (isLoading) return <Loading />;

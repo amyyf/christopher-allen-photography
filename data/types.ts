@@ -21,4 +21,5 @@ export type NavData = {
     height?: contentful.EntryFields.Number;
     width?: contentful.EntryFields.Number;
   };
+  imageTitles: string[];
 };

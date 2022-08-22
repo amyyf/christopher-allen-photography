@@ -19,7 +19,7 @@
 [ ] Finalize fonts and color scheme for all components, including error
 [ ] Hover styles
 [ ] Finalize layout (footer at botttom of viewport, height of loading spinner, grid content) to minimize content shifting
-[ ] Pretty urls (maybe, nice to have)
+[x] Pretty urls (maybe, nice to have)
 
 ## Dev instructions
 

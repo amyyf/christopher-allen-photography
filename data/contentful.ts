@@ -31,6 +31,7 @@ export async function getSiteNav(): Promise<NavData[]> {
       height: entry.fields.images[0].fields.file.details.image?.height,
       width: entry.fields.images[0].fields.file.details.image?.width,
     },
+    imageTitles: entry.fields.images.map((image) => image.fields.title),
   }));
 }
 
