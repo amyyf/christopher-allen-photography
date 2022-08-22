@@ -14,13 +14,13 @@ export default function AlbumNav() {
     );
 
   return (
-    <section className="flex flex-wrap gap-5">
+    <section className="grid grid-cols-album gap-5">
       {data.map((albumData) => (
         <Link
           href={`/albums/${convertTitleToSlug(albumData.title)}`}
           key={albumData.contentfulId}
         >
-          <a className="w-52 block relative text-transparent hover:text-zinc-200 hover:transition">
+          <a className="block relative text-transparent hover:text-zinc-200 hover:transition">
             <Image
               alt={albumData.firstImage.description}
               src={`https:${albumData.firstImage.url}`}

@@ -17,7 +17,8 @@
 -> putting height/width into the Contentful query significantly slowed down image render
 [x] Put loading and error components into appropriate slots
 [ ] Download one static file to host and display as a backup on the homepage
-[ ] Nav bar different mobile layout?
+[ ] Possible different mobile and desktop homepage images? (landscape vs portrait dimensions)
+[x] Nav bar different mobile layout? -> went with flex-wrap
 [ ] Contentful credit in footer?
 [ ] Finalize fonts and color scheme for all components, including error
 [x] Hover styles

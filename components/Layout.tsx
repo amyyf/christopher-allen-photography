@@ -21,7 +21,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     /* These styles position the footer at the bottom of the window when the content is short. */
-    <div className="flex flex-col h-screen">
+    <div className="bg-zinc-900 flex flex-col min-h-screen">
       <Head>
         <title>{pageTitle}</title>
         <meta
@@ -35,7 +35,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <h1 className="text-4xl border-b-2 mt-4 border-zinc-600">
         <Link href="/">
-          <a className="ml-4 md:ml-8 text-zinc-400 hover:text-zinc-300">
+          <a className="ml-4 md:ml-8 text-zinc-400 hover:text-zinc-300 flex flex-wrap gap-x-3 items-end">
             Christopher Allen <span className="text-2xl">Photography</span>
           </a>
         </Link>
