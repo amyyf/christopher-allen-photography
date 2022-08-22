@@ -19,6 +19,7 @@ export async function getSiteNav(): Promise<NavData[]> {
   const entries = await client.getEntries<Album>({
     content_type: 'album',
     select: 'fields.title,sys.id,fields.images',
+    order: 'fields.order',
   });
   return entries.items.map((entry) => ({
     title: entry.fields.title,
