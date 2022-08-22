@@ -82,6 +82,7 @@ export default function ImageWrapper() {
         src={`https:${data.fields.file.url}`}
         width={data.fields.file.details.image?.width}
         height={data.fields.file.details.image?.height}
+        priority
       />
     </section>
   );

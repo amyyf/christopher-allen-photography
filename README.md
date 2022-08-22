@@ -15,7 +15,8 @@
 [x] Sort albums from Contentful consistently
 [ ] Size images from Contentful appropriately for album layout; can images be pre-fetched for speed?
 -> putting height/width into the Contentful query significantly slowed down image render
-[ ] Put loading and error components into appropriate slots
+[x] Put loading and error components into appropriate slots
+[ ] Download one static file to host and display as a backup on the homepage
 [ ] Nav bar different mobile layout?
 [ ] Contentful credit in footer?
 [ ] Finalize fonts and color scheme for all components, including error

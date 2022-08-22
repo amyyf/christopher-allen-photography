@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
-import Loading from './Loading';
+import React from 'react';
 import Error from './Error';
 import { NavBar } from './NavBar';
 import { useRouter } from 'next/router';
@@ -11,7 +10,7 @@ import { usePageTitle } from '../data/hooks';
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { pathname, query } = useRouter();
 
-  const { isLoading, isError, data } = useSiteNavQuery();
+  const { data } = useSiteNavQuery();
 
   const pageTitle = usePageTitle(
     pathname,
@@ -19,14 +18,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     query.albumSlug,
     data,
   );
-
-  // TODO: less blunt-force loading and errors, only use where needed. then can maybe split out the boilerplate from the children.
-  if (isLoading) return <Loading />;
-  if (isError) {
-    return (
-      <Error message="Something went wrong getting the data, please try again." />
-    );
-  }
 
   return (
     /* These styles position the footer at the bottom of the window when the content is short. */
@@ -49,6 +40,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           </a>
         </Link>
       </h1>
+
       <NavBar navData={data} />
 
       <main className="m-8 max-w-screen-xl xl:mx-auto flex-auto">

@@ -15,7 +15,7 @@ const Home: NextPage = () => {
   if (isLoading) return <Loading />;
   if (isError)
     return (
-      <Error message="An error occurred fetching site data, please try again." />
+      <Error message="An error occurred while fetching this image, please try again." />
     );
 
   return (
