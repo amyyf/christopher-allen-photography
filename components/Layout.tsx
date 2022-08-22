@@ -44,7 +44,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <h1 className="text-4xl border-b-2 mt-4 border-zinc-600">
         <Link href="/">
-          <a className="ml-4 md:ml-8 text-zinc-400">
+          <a className="ml-4 md:ml-8 text-zinc-400 hover:text-zinc-300">
             Christopher Allen <span className="text-2xl">Photography</span>
           </a>
         </Link>

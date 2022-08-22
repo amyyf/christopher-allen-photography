@@ -14,11 +14,12 @@
 [x] Dynamic page title
 [x] Sort albums from Contentful consistently
 [ ] Size images from Contentful appropriately for album layout; can images be pre-fetched for speed?
+-> putting height/width into the Contentful query significantly slowed down image render
 [ ] Put loading and error components into appropriate slots
 [ ] Nav bar different mobile layout?
 [ ] Contentful credit in footer?
 [ ] Finalize fonts and color scheme for all components, including error
-[ ] Hover styles
+[x] Hover styles
 [ ] Finalize layout (footer at botttom of viewport, loaders, errors, grid content) to minimize content shifting
 [x] Pretty urls (maybe, nice to have)
 

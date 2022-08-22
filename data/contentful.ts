@@ -9,10 +9,10 @@ const client = contentful.createClient({
 });
 
 export async function getHomepagePhoto() {
-  const photo = await client.getEntries<HomepagePhoto>({
+  const entry = await client.getEntries<HomepagePhoto>({
     content_type: 'homepagePhoto',
   });
-  return photo;
+  return entry;
 }
 
 export async function getSiteNav(): Promise<NavData[]> {

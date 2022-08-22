@@ -20,12 +20,13 @@ export default function AlbumNav() {
           href={`/albums/${convertTitleToSlug(albumData.title)}`}
           key={albumData.contentfulId}
         >
-          <a className="w-52 block relative text-transparent hover:text-zinc-100 hover:bg-zinc-900 hover:opacity-50 hover:transition">
+          <a className="w-52 block relative text-transparent hover:text-zinc-200 hover:transition">
             <Image
               alt={albumData.firstImage.description}
               src={`https:${albumData.firstImage.url}`}
               height={albumData.firstImage.height}
               width={albumData.firstImage.width}
+              className="hover:opacity-50 hover:transition"
             />
             <h2 className="text-lg absolute top-1/3 left-5">
               {albumData.title}
