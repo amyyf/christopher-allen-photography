@@ -5,24 +5,20 @@ import Loading from './Loading';
 import Error from './Error';
 import { NavBar } from './NavBar';
 import { useRouter } from 'next/router';
-import { generatePageTitle } from '../utils';
 import { useSiteNavQuery } from '../data/queries';
+import { usePageTitle } from '../data/hooks';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { pathname, query } = useRouter();
 
   const { isLoading, isError, data } = useSiteNavQuery();
 
-  const [pageTitle, setPageTitle] = useState('');
-  useEffect(() => {
-    const title = generatePageTitle(
-      pathname,
-      query.imageSlug,
-      query.albumSlug,
-      data,
-    );
-    setPageTitle(title);
-  }, [pathname, query.imageSlug, query.albumSlug, data]);
+  const pageTitle = usePageTitle(
+    pathname,
+    query.imageSlug,
+    query.albumSlug,
+    data,
+  );
 
   // TODO: less blunt-force loading and errors, only use where needed. then can maybe split out the boilerplate from the children.
   if (isLoading) return <Loading />;
