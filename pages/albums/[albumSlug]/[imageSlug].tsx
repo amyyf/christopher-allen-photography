@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Loading from '../../../components/Loading';
 import Error from '../../../components/Error';
 import { useImageQuery } from '../../../data/queries';
+import { BLUR_DATA_URL } from '../../../data/contentful';
 
 export default function ImageWrapper() {
   const router = useRouter();
@@ -11,14 +12,10 @@ export default function ImageWrapper() {
 
   const { isLoading, isError, data } = useImageQuery(imageSlug, albumSlug);
 
-  if (isLoading) return <Loading />;
-  if (isError || typeof imageSlug !== 'string' || !imageSlug)
-    return <Error message="The image could not be found. Please try again." />;
-
   return (
     <section className="text-center">
       <div>
-        <Link href={`/albums/${albumSlug}/${data.previousImageSlug}`}>
+        <Link href={`/albums/${albumSlug}/${data?.previousImageSlug}`}>
           <a className="inline-block">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +34,6 @@ export default function ImageWrapper() {
           </a>
         </Link>
 
-        {/* is this the UX I want to handle forward/back browser routing?? */}
         <Link href={`/albums/${albumSlug}`}>
           <a className="inline-block">
             <svg
@@ -57,7 +53,7 @@ export default function ImageWrapper() {
           </a>
         </Link>
 
-        <Link href={`/albums/${albumSlug}/${data.nextImageSlug}`}>
+        <Link href={`/albums/${albumSlug}/${data?.nextImageSlug}`}>
           <a className="inline-block">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -77,13 +73,21 @@ export default function ImageWrapper() {
         </Link>
       </div>
 
-      <Image
-        alt={data.fields.description}
-        src={`https:${data.fields.file.url}`}
-        width={data.fields.file.details.image?.width}
-        height={data.fields.file.details.image?.height}
-        priority
-      />
+      {isError || typeof imageSlug !== 'string' || !imageSlug ? (
+        <Error message="The image could not be found. Please try again." />
+      ) : isLoading ? (
+        <Loading />
+      ) : (
+        <Image
+          alt={data.fields.description}
+          src={`https:${data.fields.file.url}`}
+          width={data.fields.file.details.image?.width}
+          height={data.fields.file.details.image?.height}
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
+          priority
+        />
+      )}
     </section>
   );
 }

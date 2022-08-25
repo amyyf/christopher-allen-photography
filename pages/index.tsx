@@ -22,6 +22,7 @@ const Home: NextPage = () => {
             <Image alt="A peaceful green field with trees" src={fallbackHome} />
           ) : (
             <Image
+              priority
               alt={data.items[0].fields.image.fields.description}
               src={`https:${data.items[0].fields.image.fields.file.url}`}
               width={

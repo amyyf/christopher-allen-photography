@@ -8,6 +8,9 @@ const client = contentful.createClient({
   accessToken: 'kpL8Ke1IaByl2DBbXoCorhKFs0gyt7R4YmzUyLXl2-I',
 });
 
+export const BLUR_DATA_URL =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNsqAcAAYUBAdpOiIkAAAAASUVORK5CYII=';
+
 export async function getHomepagePhoto() {
   const entry = await client.getEntries<HomepagePhoto>({
     content_type: 'homepagePhoto',
