@@ -27,6 +27,7 @@
 - [ ] Contentful credit in footer?
 - [ ] Finalize fonts and color scheme for all components, including error
 - [ ] Finalize layout (footer at botttom of viewport, loaders, errors, grid content) to minimize content shifting
+- [ ] Should the album page title display on the album page? Or could we highlight the current album in the nav menu?
 - [ ] Handling for null entries and images
 - [ ] Add captions when provided
 - [ ] Do draft posts come through in the API? How to separate out test data from real data?
@@ -40,4 +41,10 @@ Run the development server:
 npm run dev
 # or
 yarn dev
+```
+
+Watch test files:
+
+```bash
+npm run test
 ```

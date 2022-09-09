@@ -73,20 +73,25 @@ export default function ImageWrapper() {
         </Link>
       </div>
 
-      {isError || typeof imageSlug !== 'string' || !imageSlug ? (
+      {isError ? (
         <Error message="The image could not be found. Please try again." />
       ) : isLoading ? (
         <Loading />
       ) : (
-        <Image
-          alt={data.fields.description}
-          src={`https:${data.fields.file.url}`}
-          width={data.fields.file.details.image?.width}
-          height={data.fields.file.details.image?.height}
-          placeholder="blur"
-          blurDataURL={BLUR_DATA_URL}
-          priority
-        />
+        <>
+          <Image
+            alt={data.fields.description}
+            src={`https:${data.fields.file.url}`}
+            width={data.fields.file.details.image?.width}
+            height={data.fields.file.details.image?.height}
+            placeholder="blur"
+            blurDataURL={BLUR_DATA_URL}
+            priority
+          />
+          {data?.fields.description && (
+            <p className="text-zinc-400 text-sm">{data?.fields.description}</p>
+          )}
+        </>
       )}
     </section>
   );
