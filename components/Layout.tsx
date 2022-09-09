@@ -41,7 +41,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </Link>
       </h1>
 
-      <NavBar navData={data} />
+      <NavBar navData={data} currentAlbum={query.albumSlug} />
 
       <main className="m-8 max-w-screen-xl xl:mx-auto flex-auto">
         {children}

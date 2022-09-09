@@ -20,6 +20,7 @@
 - [x] Rework to match updated content model - albums -> entries
 - [x] Handling for images where the title is not a single number
 - [x] Hover styles
+- [x] Should the album page title display on the image page? Or could we highlight the current album in the nav menu?
 - [ ] Possible different mobile and desktop homepage images? (landscape vs portrait dimensions)
 - [ ] Limit number of homepage images that can be published (`https://www.contentfulcommunity.com/t/- limit-content-entries-by-content-model-type/539/3`)
 - [ ] Size images from Contentful appropriately for album layout; can images be pre-fetched for speed?
@@ -27,7 +28,6 @@
 - [ ] Contentful credit in footer?
 - [ ] Finalize fonts and color scheme for all components, including error
 - [ ] Finalize layout (footer at botttom of viewport, loaders, errors, grid content) to minimize content shifting
-- [ ] Should the album page title display on the album page? Or could we highlight the current album in the nav menu?
 - [ ] Handling for null entries and images
 - [ ] Add captions when provided
 - [ ] Do draft posts come through in the API? How to separate out test data from real data?
