@@ -5,13 +5,16 @@ describe('generatePageTitle', () => {
     {
       title: 'Landscapes',
       contentfulId: '1',
-      firstImage: {
+      firstEntry: {
         contentfulId: '1',
         title: 'Snowy Lakeside',
         description: 'a photo',
         url: 'url',
       },
-      imageTitles: ['Snowy Lakeside', 'Image 2'],
+      entryTitles: [
+        { title: 'Snowy Lakeside', imageNumber: '123' },
+        { title: 'Image 2', imageNumber: '234' },
+      ],
     },
   ];
   it('generates the home page title', () => {
@@ -39,8 +42,8 @@ describe('generatePageTitle', () => {
 
   it('dynamically generates an image page title', () => {
     const generated = generatePageTitle(
-      '/albums/landscapes/snowy-lakeside',
-      'snowy-lakeside',
+      '/albums/landscapes/snowy-lakeside-123',
+      'snowy-lakeside-123',
       'landscapes',
       dummyNavData,
     );
@@ -72,5 +75,12 @@ describe('convertTitleToSlug', () => {
     const title = 'Northbridge Town Photo Gallery';
     const expected = 'northbridge-town-photo-gallery';
     expect(convertTitleToSlug(title)).toEqual(expected);
+  });
+
+  it('correctly appends an image number when provided', () => {
+    const title = 'Snowy Lakeside';
+    const imageNum = '123';
+    const expected = 'snowy-lakeside-123';
+    expect(convertTitleToSlug(title, imageNum)).toEqual(expected);
   });
 });

@@ -14,9 +14,10 @@ export const generatePageTitle = (
   const contentTitle =
     // image title, if it exists, takes precedence over album title
     imageSlug && typeof imageSlug === 'string'
-      ? album?.imageTitles.find(
-          (title) => convertTitleToSlug(title) === imageSlug,
-        )
+      ? album?.entryTitles.find(
+          (title) =>
+            convertTitleToSlug(title.title, title.imageNumber) === imageSlug,
+        )?.title
       : album?.title;
 
   switch (pathname) {
@@ -29,7 +30,13 @@ export const generatePageTitle = (
   }
 };
 
-export const convertTitleToSlug = (title: string) => {
+const formatUrlString = (str: string) => {
   const spaces = /\s+/g;
-  return title.toLowerCase().replace(spaces, '-');
+  return str.toLowerCase().replace(spaces, '-');
+};
+
+export const convertTitleToSlug = (title: string, imageNum?: string) => {
+  return imageNum
+    ? `${formatUrlString(title)}-${formatUrlString(imageNum)}`
+    : formatUrlString(title);
 };

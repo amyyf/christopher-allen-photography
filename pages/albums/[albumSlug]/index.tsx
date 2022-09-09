@@ -27,19 +27,20 @@ export default function Album() {
         <h2 className="self-center justify-self-center md:col-start-2 md:row-start-2 text-xl text-zinc-300">
           {data.title}
         </h2>
-        {data.images.map((image) => (
+        {data.entries.map((entry) => (
           <Link
-            key={image.fields.title}
+            key={entry.fields.title}
             href={`/albums/${albumSlug}/${convertTitleToSlug(
-              image.fields.title,
+              entry.fields.title,
+              entry.fields.visual.fields.title,
             )}`}
           >
             <a>
               <Image
-                alt={image.fields.description}
-                src={`https:${image.fields.file.url}`}
-                width={image.fields.file.details.image?.width}
-                height={image.fields.file.details.image?.height}
+                alt={entry.fields.description}
+                src={`https:${entry.fields.visual.fields.file.url}`}
+                width={entry.fields.visual.fields.file.details.image?.width}
+                height={entry.fields.visual.fields.file.details.image?.height}
                 placeholder="blur"
                 blurDataURL={BLUR_DATA_URL}
               />

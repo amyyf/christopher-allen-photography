@@ -19,23 +19,28 @@ export async function getHomepagePhoto() {
 }
 
 export async function getSiteNav(): Promise<NavData[]> {
-  const entries = await client.getEntries<Album>({
+  const albums = await client.getEntries<Album>({
     content_type: 'album',
-    select: 'fields.title,sys.id,fields.images',
+    select: 'fields.title,sys.id,fields.entries',
     order: 'fields.order',
   });
-  return entries.items.map((entry) => ({
-    title: entry.fields.title,
-    contentfulId: entry.sys.id,
-    firstImage: {
-      contentfulId: entry.fields.images[0].sys.id,
-      title: entry.fields.images[0].fields.title,
-      description: entry.fields.images[0].fields.description,
-      url: entry.fields.images[0].fields.file.url,
-      height: entry.fields.images[0].fields.file.details.image?.height,
-      width: entry.fields.images[0].fields.file.details.image?.width,
+  return albums.items.map((album) => ({
+    title: album.fields.title,
+    contentfulId: album.sys.id,
+    firstEntry: {
+      contentfulId: album.fields.entries[0].fields.visual.sys.id,
+      title: album.fields.entries[0].fields.title,
+      description: album.fields.entries[0].fields.description,
+      url: album.fields.entries[0].fields.visual.fields.file.url,
+      height:
+        album.fields.entries[0].fields.visual.fields.file.details.image?.height,
+      width:
+        album.fields.entries[0].fields.visual.fields.file.details.image?.width,
     },
-    imageTitles: entry.fields.images.map((image) => image.fields.title),
+    entryTitles: album.fields.entries.map((entry) => ({
+      title: entry.fields.title,
+      imageNumber: entry.fields.visual.fields.title,
+    })),
   }));
 }
 
@@ -43,20 +48,31 @@ export async function getSiteNav(): Promise<NavData[]> {
 // If the current image is the first in the album, the "previous" image will be the last in album.
 // If the current image is the last in the album, the "next" image will be the first in album.
 export function getPrevAndNextImages(albumData: Album, currentImageId: string) {
-  const currentIndex = albumData.images.findIndex(
-    (el) => el.sys.id === currentImageId,
+  const currentIndex = albumData.entries.findIndex(
+    (el) => el.fields.visual.sys.id === currentImageId,
   );
   return {
     previousImageSlug:
       currentIndex === 0
         ? convertTitleToSlug(
-            albumData.images[albumData.images.length - 1].fields.title,
+            albumData.entries[albumData.entries.length - 1].fields.title,
+            albumData.entries[albumData.entries.length - 1].fields.visual.fields
+              .title,
           )
-        : convertTitleToSlug(albumData.images[currentIndex - 1].fields.title),
+        : convertTitleToSlug(
+            albumData.entries[currentIndex - 1].fields.title,
+            albumData.entries[currentIndex - 1].fields.visual.fields.title,
+          ),
     nextImageSlug:
-      currentIndex + 1 === albumData.images.length
-        ? convertTitleToSlug(albumData.images[0].fields.title)
-        : convertTitleToSlug(albumData.images[currentIndex + 1].fields.title),
+      currentIndex + 1 === albumData.entries.length
+        ? convertTitleToSlug(
+            albumData.entries[0].fields.title,
+            albumData.entries[0].fields.visual.fields.title,
+          )
+        : convertTitleToSlug(
+            albumData.entries[currentIndex + 1].fields.title,
+            albumData.entries[currentIndex + 1].fields.visual.fields.title,
+          ),
   };
 }
 
@@ -74,7 +90,7 @@ export async function getAlbumData(
   const data = await client.getEntry<Album>(albumId);
   return {
     title: data.fields.title,
-    images: data.fields.images,
+    entries: data.fields.entries,
   };
 }
 
@@ -86,9 +102,13 @@ export async function getImage(
     return Promise.reject(new Error('No valid ID provided'));
   if (!albumData)
     return Promise.reject(new Error('Lookup data for album not found'));
-  const imageId = albumData.images.find(
-    (image) => convertTitleToSlug(image.fields.title) === imageSlug,
-  )?.sys.id;
+  const imageId = albumData.entries.find(
+    (entry) =>
+      convertTitleToSlug(
+        entry.fields.title,
+        entry.fields.visual.fields.title,
+      ) === imageSlug,
+  )?.fields.visual.sys.id;
   if (!imageId) return Promise.reject(new Error('Image ID could not be found'));
   const asset = await client.getAsset(imageId);
   const { previousImageSlug, nextImageSlug } = getPrevAndNextImages(

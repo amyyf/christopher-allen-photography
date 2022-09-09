@@ -25,6 +25,12 @@
 [x] Hover styles
 [ ] Finalize layout (footer at botttom of viewport, loaders, errors, grid content) to minimize content shifting
 [x] Pretty urls (maybe, nice to have)
+[x] Rework to match updated content model - albums -> entries
+[x] Handling for images where the title is not a single number
+[ ] Handling for null entries and images
+[ ] Add captions when provided
+[ ] Do draft posts come through in the API? How to separate out test data from real data?
+[ ] Flatten out data coming back from Contentful to remove that logic from the presentational components?
 
 ## Dev instructions
 

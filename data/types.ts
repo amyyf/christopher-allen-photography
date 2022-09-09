@@ -1,5 +1,11 @@
 import * as contentful from 'contentful';
 
+type AlbumEntry = {
+  description: string;
+  title: string;
+  visual: contentful.Asset;
+};
+
 export type HomepagePhoto = {
   title: contentful.EntryFields.Text;
   image: contentful.Asset;
@@ -7,13 +13,13 @@ export type HomepagePhoto = {
 
 export type Album = {
   title: contentful.EntryFields.Text;
-  images: contentful.Asset[];
+  entries: contentful.Entry<AlbumEntry>[];
 };
 
 export type NavData = {
   title: string;
   contentfulId: string;
-  firstImage: {
+  firstEntry: {
     contentfulId: contentful.EntryFields.Text;
     title: contentful.EntryFields.Text;
     description: contentful.EntryFields.Text;
@@ -21,5 +27,5 @@ export type NavData = {
     height?: contentful.EntryFields.Number;
     width?: contentful.EntryFields.Number;
   };
-  imageTitles: string[];
+  entryTitles: { title: string; imageNumber: string }[];
 };
