@@ -26,15 +26,17 @@
 - [x] Size images from Contentful appropriately for album layout; pre-fetch single images for speed
       -> putting height/width into the Contentful query significantly slowed down image render
 - [x] Set max-height on grid rows
+- [x] Do draft posts come through in the API? How to separate out test data from real data?
+      -> won't do
+- [ ] Handling for null entries and images
+- [ ] Finalize layout (footer at botttom of viewport, loaders, errors, grid content) to minimize content shifting
+- [ ] Flatten out data coming back from Contentful to remove that logic from the presentational components?
+      -> nice to have
+- [ ] Finalize fonts and color scheme for all components, including error
+      -> update favicon with final font
 - [ ] Possible different mobile and desktop homepage images? (landscape vs portrait dimensions)
 - [ ] Limit number of homepage images that can be published (`https://www.contentfulcommunity.com/t/- limit-content-entries-by-content-model-type/539/3`)
 - [ ] Contentful credit in footer?
-- [ ] Finalize fonts and color scheme for all components, including error
-      -> update favicon with final font
-- [ ] Finalize layout (footer at botttom of viewport, loaders, errors, grid content) to minimize content shifting
-- [ ] Handling for null entries and images
-- [ ] Do draft posts come through in the API? How to separate out test data from real data?
-- [ ] Flatten out data coming back from Contentful to remove that logic from the presentational components?
 - [ ] Remove robots meta tag before going live!!!!
 
 ## Dev instructions
