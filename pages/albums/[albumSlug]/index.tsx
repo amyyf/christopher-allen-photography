@@ -14,6 +14,7 @@ export default function Album() {
   const { albumSlug } = router.query;
 
   const { isLoading, isError, data } = useAlbumQuery(albumSlug);
+  console.log(data);
 
   if (isLoading) return <Loading />;
   if (isError)
@@ -23,29 +24,37 @@ export default function Album() {
 
   return (
     <>
-      <section className="grid gap-5 grid-cols-album">
+      <section className="grid gap-x-5 gap-y-3 grid-cols-album auto-rows-album place-content-center">
         <h2 className="self-center justify-self-center md:col-start-2 md:row-start-2 text-xl text-zinc-300">
           {data.title}
         </h2>
         {data.entries.map((entry) => (
-          <Link
-            key={entry.fields.visual.fields.title}
-            href={`/albums/${albumSlug}/${convertTitleToSlug(
-              entry.fields.title,
-              entry.fields.visual.fields.title,
-            )}`}
-          >
-            <a>
-              <Image
-                alt={entry.fields.description}
-                src={`https:${entry.fields.visual.fields.file.url}`}
-                width={entry.fields.visual.fields.file.details.image?.width}
-                height={entry.fields.visual.fields.file.details.image?.height}
-                placeholder="blur"
-                blurDataURL={BLUR_DATA_URL}
-              />
-            </a>
-          </Link>
+          <div key={entry.fields.visual.fields.title}>
+            <div className="h-full relative">
+              <Link
+                href={`/albums/${albumSlug}/${convertTitleToSlug(
+                  entry.fields.title,
+                  entry.fields.visual.fields.title,
+                )}`}
+              >
+                <a>
+                  <Image
+                    alt={entry.fields.description}
+                    src={`https:${entry.fields.visual.fields.file.url}?fm=jpg&fl=progressive`}
+                    width={entry.fields.visual.fields.file.details.image?.width}
+                    height={
+                      entry.fields.visual.fields.file.details.image?.height
+                    }
+                    placeholder="blur"
+                    blurDataURL={BLUR_DATA_URL}
+                    layout="fill"
+                    objectFit="contain"
+                    objectPosition={'center'}
+                  />
+                </a>
+              </Link>
+            </div>
+          </div>
         ))}
       </section>
     </>

@@ -82,7 +82,7 @@ export default function ImageWrapper() {
       ) : isLoading ? (
         <Loading />
       ) : (
-        <>
+        <div className="max-w-screen-lg mx-auto">
           <Image
             alt={data.asset.fields.description || data.description}
             src={`https:${data.asset.fields.file.url}`}
@@ -93,7 +93,7 @@ export default function ImageWrapper() {
           {data.description && (
             <p className="text-zinc-400 text-sm">{data.description}</p>
           )}
-        </>
+        </div>
       )}
     </section>
   );

@@ -43,7 +43,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <NavBar navData={data} currentAlbum={query.albumSlug} />
 
-      <main className="m-8 max-w-screen-xl xl:mx-auto flex-auto">
+      <main className="m-8 max-w-screen-xl xl:w-full xl:mx-auto flex-auto">
         {children}
       </main>
 

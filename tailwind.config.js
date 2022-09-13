@@ -9,6 +9,9 @@ module.exports = {
       gridTemplateColumns: {
         album: 'repeat(auto-fit, minmax(200px, 1fr))',
       },
+      gridAutoRows: {
+        album: '200px',
+      },
     },
   },
   plugins: [],

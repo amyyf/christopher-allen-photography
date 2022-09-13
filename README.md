@@ -23,10 +23,11 @@
 - [x] Should the album page title display on the image page? Or could we highlight the current album in the nav menu?
 - [x] Add captions when provided
 - [x] Alt text - asset description fallback to entry description
+- [x] Size images from Contentful appropriately for album layout; pre-fetch single images for speed
+      -> putting height/width into the Contentful query significantly slowed down image render
+- [x] Set max-height on grid rows
 - [ ] Possible different mobile and desktop homepage images? (landscape vs portrait dimensions)
 - [ ] Limit number of homepage images that can be published (`https://www.contentfulcommunity.com/t/- limit-content-entries-by-content-model-type/539/3`)
-- [ ] Size images from Contentful appropriately for album layout; can images be pre-fetched for speed?
-      -> putting height/width into the Contentful query significantly slowed down image render
 - [ ] Contentful credit in footer?
 - [ ] Finalize fonts and color scheme for all components, including error
 - [ ] Finalize layout (footer at botttom of viewport, loaders, errors, grid content) to minimize content shifting
