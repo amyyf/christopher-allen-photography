@@ -41,10 +41,6 @@ export default function Album() {
                   <Image
                     alt={entry.fields.description}
                     src={`https:${entry.fields.visual.fields.file.url}?fm=jpg&fl=progressive`}
-                    width={entry.fields.visual.fields.file.details.image?.width}
-                    height={
-                      entry.fields.visual.fields.file.details.image?.height
-                    }
                     placeholder="blur"
                     blurDataURL={BLUR_DATA_URL}
                     layout="fill"
