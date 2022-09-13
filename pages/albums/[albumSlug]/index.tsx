@@ -29,7 +29,7 @@ export default function Album() {
         </h2>
         {data.entries.map((entry) => (
           <Link
-            key={entry.fields.title}
+            key={entry.fields.visual.fields.title}
             href={`/albums/${albumSlug}/${convertTitleToSlug(
               entry.fields.title,
               entry.fields.visual.fields.title,
