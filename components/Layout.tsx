@@ -24,10 +24,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <div className="bg-zinc-900 flex flex-col min-h-screen">
       <Head>
         <title>{pageTitle}</title>
+        <meta property="og:title" content={pageTitle} key="title" />
         <meta
           name="description"
           content="Fine portrait and landscape photography in Whitinsville, Massachusetts."
+          key="description"
         />
+        <meta
+          name="og:description"
+          content="Fine portrait and landscape photography in Whitinsville, Massachusetts."
+          key="og-description"
+        />
+        {/* TODO: TAKE THIS OFF BEFORE GOING LIVE!!!! */}
+        <meta name="robots" content="noindex, nofollow" />
         {/* TODO: what to use for the favicon? */}
         {/* TODO: What about allllll the other metadata shtuff: og, twitter  */}
         <link rel="icon" href="/favicon.ico" />
