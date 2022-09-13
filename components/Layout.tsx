@@ -20,26 +20,30 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   );
 
   return (
-    /* These styles position the footer at the bottom of the window when the content is short. */
+    /* These page styles position the footer at the bottom of the window when the content is short. */
     <div className="bg-zinc-900 flex flex-col min-h-screen">
       <Head>
         <title>{pageTitle}</title>
-        <meta property="og:title" content={pageTitle} key="title" />
         <meta
           name="description"
           content="Fine portrait and landscape photography in Whitinsville, Massachusetts."
           key="description"
         />
+        <meta property="og:title" content={pageTitle} key="title" />
         <meta
-          name="og:description"
+          property="og:description"
           content="Fine portrait and landscape photography in Whitinsville, Massachusetts."
           key="og-description"
         />
+        <meta property="og:type" content="website" key="og-type" />
+        <meta
+          property="og:site_name"
+          content="Christopher Allen Photography"
+          key="og-site-name"
+        />
+        <link rel="icon" href="/favicon.ico" />
         {/* TODO: TAKE THIS OFF BEFORE GOING LIVE!!!! */}
         <meta name="robots" content="noindex, nofollow" />
-        {/* TODO: what to use for the favicon? */}
-        {/* TODO: What about allllll the other metadata shtuff: og, twitter  */}
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <h1 className="text-4xl border-b-2 mt-4 border-zinc-600">

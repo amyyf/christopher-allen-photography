@@ -14,7 +14,6 @@ export default function Album() {
   const { albumSlug } = router.query;
 
   const { isLoading, isError, data } = useAlbumQuery(albumSlug);
-  console.log(data);
 
   if (isLoading) return <Loading />;
   if (isError)

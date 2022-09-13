@@ -30,10 +30,12 @@
 - [ ] Limit number of homepage images that can be published (`https://www.contentfulcommunity.com/t/- limit-content-entries-by-content-model-type/539/3`)
 - [ ] Contentful credit in footer?
 - [ ] Finalize fonts and color scheme for all components, including error
+      -> update favicon with final font
 - [ ] Finalize layout (footer at botttom of viewport, loaders, errors, grid content) to minimize content shifting
 - [ ] Handling for null entries and images
 - [ ] Do draft posts come through in the API? How to separate out test data from real data?
 - [ ] Flatten out data coming back from Contentful to remove that logic from the presentational components?
+- [ ] Remove robots meta tag before going live!!!!
 
 ## Dev instructions
 
