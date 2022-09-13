@@ -102,21 +102,23 @@ export async function getImage(
     return Promise.reject(new Error('No valid ID provided'));
   if (!albumData)
     return Promise.reject(new Error('Lookup data for album not found'));
-  const imageId = albumData.entries.find(
+  const imageEntry = albumData.entries.find(
     (entry) =>
       convertTitleToSlug(
         entry.fields.title,
         entry.fields.visual.fields.title,
       ) === imageSlug,
-  )?.fields.visual.sys.id;
-  if (!imageId) return Promise.reject(new Error('Image ID could not be found'));
-  const asset = await client.getAsset(imageId);
+  );
+  if (!imageEntry?.fields.visual.sys.id)
+    return Promise.reject(new Error('Image ID could not be found'));
+  const asset = await client.getAsset(imageEntry.fields.visual.sys.id);
   const { previousImageSlug, nextImageSlug } = getPrevAndNextImages(
     albumData,
-    imageId,
+    imageEntry.fields.visual.sys.id,
   );
   return {
-    ...asset,
+    asset,
+    description: imageEntry.fields.description,
     previousImageSlug,
     nextImageSlug,
   };
