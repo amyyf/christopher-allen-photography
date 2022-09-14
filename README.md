@@ -30,7 +30,7 @@
       -> won't do
 - [x] Finalize layout (footer at botttom of viewport, loaders, errors, grid content) to minimize content shifting
 - [x] Add arrow navigation
-- [ ] Add swipe navigation
+- [x] Add swipe navigation
 - [ ] Prefetch previous and next images
 - [ ] Handling for null entries and images
 - [ ] Flatten out data coming back from Contentful to remove that logic from the presentational components?

@@ -2,7 +2,7 @@ import { NextRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { generatePageTitle } from '../utils';
 
-import type { NavData } from './types';
+import type { NavData } from '../types/data';
 
 export const usePageTitle = (
   pathname: string,

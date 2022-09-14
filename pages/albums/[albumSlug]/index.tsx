@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import type { Album } from '../../../data/types';
+import type { Album } from '../../../types/data';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Loading from '../../../components/Loading';

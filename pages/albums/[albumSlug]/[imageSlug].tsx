@@ -1,10 +1,12 @@
-import { useRouter } from 'next/router';
+import { NextRouter, useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
 import Loading from '../../../components/Loading';
 import Error from '../../../components/Error';
 import { useImageQuery } from '../../../data/queries';
 import { useImageNav } from '../../../data/hooks';
+import ReactTouchEvents from 'react-touch-events';
+import { SyntheticEvent } from 'react';
 
 export default function ImageWrapper() {
   const router = useRouter();
@@ -13,6 +15,20 @@ export default function ImageWrapper() {
   const { isLoading, isError, data } = useImageQuery(imageSlug, albumSlug);
 
   useImageNav(router, albumSlug, data?.nextImageSlug, data?.previousImageSlug);
+
+  const handleSwipe = (
+    event: SyntheticEvent,
+    direction: 'left' | 'right' | 'top' | 'bottom',
+  ) => {
+    switch (direction) {
+      case 'left':
+        return router.push(`/albums/${albumSlug}/${data?.nextImageSlug}`);
+      case 'right':
+        return router.push(`/albums/${albumSlug}/${data?.previousImageSlug}`);
+      default:
+        return;
+    }
+  };
 
   return (
     <section className="text-center">
@@ -84,18 +100,20 @@ export default function ImageWrapper() {
       ) : isLoading ? (
         <Loading />
       ) : (
-        <div className="max-w-screen-lg mx-auto">
-          <Image
-            alt={data.asset.fields.description || data.description}
-            src={`https:${data.asset.fields.file.url}`}
-            width={data.asset.fields.file.details.image?.width}
-            height={data.asset.fields.file.details.image?.height}
-            priority
-          />
-          {data.description && (
-            <p className="text-zinc-400 text-sm mt-4">{data.description}</p>
-          )}
-        </div>
+        <ReactTouchEvents onSwipe={handleSwipe}>
+          <div className="max-w-screen-lg mx-auto">
+            <Image
+              alt={data.asset.fields.description || data.description}
+              src={`https:${data.asset.fields.file.url}`}
+              width={data.asset.fields.file.details.image?.width}
+              height={data.asset.fields.file.details.image?.height}
+              priority
+            />
+            {data.description && (
+              <p className="text-zinc-400 text-sm mt-4">{data.description}</p>
+            )}
+          </div>
+        </ReactTouchEvents>
       )}
     </section>
   );

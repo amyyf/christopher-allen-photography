@@ -1,4 +1,4 @@
-import { NavData } from '../data/types';
+import { NavData } from '../types/data';
 
 export const generatePageTitle = (
   pathname: string,

@@ -1,6 +1,6 @@
 import * as contentful from 'contentful';
 
-import type { Album, HomepagePhoto, NavData } from './types';
+import type { Album, HomepagePhoto, NavData } from '../types/data';
 import { convertTitleToSlug } from '../utils';
 
 const client = contentful.createClient({

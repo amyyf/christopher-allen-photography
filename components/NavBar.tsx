@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import type { NavData } from '../data/types';
+import type { NavData } from '../types/data';
 import { convertTitleToSlug } from '../utils';
 
 export const NavBar = ({
