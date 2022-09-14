@@ -4,13 +4,15 @@ import Link from 'next/link';
 import Loading from '../../../components/Loading';
 import Error from '../../../components/Error';
 import { useImageQuery } from '../../../data/queries';
-import { BLUR_DATA_URL } from '../../../data/contentful';
+import { useImageNav } from '../../../data/hooks';
 
 export default function ImageWrapper() {
   const router = useRouter();
   const { albumSlug, imageSlug } = router.query;
 
   const { isLoading, isError, data } = useImageQuery(imageSlug, albumSlug);
+
+  useImageNav(router, albumSlug, data?.nextImageSlug, data?.previousImageSlug);
 
   return (
     <section className="text-center">
