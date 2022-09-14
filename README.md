@@ -31,16 +31,21 @@
 - [x] Finalize layout (footer at botttom of viewport, loaders, errors, grid content) to minimize content shifting
 - [x] Add arrow navigation
 - [x] Add swipe navigation
-- [ ] Prefetch previous and next images
-- [ ] Handling for null entries and images
+- [x] Prefetch previous and next images
+      -> won't do - seems to be causing morphing between images, which I find more jarring than slow loading
+- [x] Handling for null entries and images
+- [x] Contentful credit in footer?
+      -> won't do - can't find any mandate for using
 - [ ] Finalize fonts and color scheme for all components, including error
       -> update favicon with final font
+- [ ] Remove robots meta tag before going live!!!!
+
+## Possible future optimizations
+
 - [ ] Flatten out data coming back from Contentful to remove that logic from the presentational components?
       -> nice to have
 - [ ] Possible different mobile and desktop homepage images? (landscape vs portrait dimensions)
 - [ ] Limit number of homepage images that can be published? (`https://www.contentfulcommunity.com/t/- limit-content-entries-by-content-model-type/539/3`)
-- [ ] Contentful credit in footer?
-- [ ] Remove robots meta tag before going live!!!!
 
 ## Dev instructions
 

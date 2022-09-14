@@ -18,19 +18,15 @@ const Home: NextPage = () => {
     <div className="text-center">
       <Link href="/albums">
         <a>
-          {isError || !data.items[0] ? (
+          {isError || !data ? (
             <Image alt="A peaceful green field with trees" src={fallbackHome} />
           ) : (
             <Image
-              priority
-              alt={data.items[0].fields.image.fields.description}
-              src={`https:${data.items[0].fields.image.fields.file.url}`}
-              width={
-                data.items[0].fields.image.fields.file.details.image?.width
-              }
-              height={
-                data.items[0].fields.image.fields.file.details.image?.height
-              }
+              priority={true}
+              alt={data.fields.image.fields.description}
+              src={`https:${data.fields.image.fields.file.url}`}
+              width={data.fields.image.fields.file.details.image?.width}
+              height={data.fields.image.fields.file.details.image?.height}
             />
           )}
         </a>

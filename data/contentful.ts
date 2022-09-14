@@ -14,8 +14,9 @@ export const BLUR_DATA_URL =
 export async function getHomepagePhoto() {
   const entry = await client.getEntries<HomepagePhoto>({
     content_type: 'homepagePhoto',
+    limit: 1,
   });
-  return entry;
+  return entry.items[0];
 }
 
 export async function getSiteNav(): Promise<NavData[]> {

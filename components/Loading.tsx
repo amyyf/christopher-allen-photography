@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <div className="text-center">
+    <div className="text-center mt-[15%]">
       <svg
         viewBox="0 0 100 100"
         xmlns="http://www.w3.org/2000/svg"
