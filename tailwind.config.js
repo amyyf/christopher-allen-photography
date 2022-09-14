@@ -6,6 +6,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: [
+          'Lucida Grande',
+          'Lucida Sans Unicode',
+          'Lucida Sans',
+          'Geneva',
+          'Verdana',
+          'sans-serif',
+        ],
+      },
       gridTemplateColumns: {
         album: 'repeat(auto-fit, minmax(200px, 1fr))',
       },

@@ -21,7 +21,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     /* These page styles position the footer at the bottom of the window when the content is short. */
-    <div className="bg-zinc-900 flex flex-col min-h-screen">
+    <div className="bg-zinc-900 flex flex-col min-h-screen font-sans">
       <Head>
         <title>{pageTitle}</title>
         <meta
@@ -60,15 +60,30 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         {children}
       </main>
 
-      <footer className="text-center text-sm text-zinc-400 border-t-2 border-zinc-600 p-4 flex-shrink-0">
-        <p>
-          Christopher Allen Photography, Whitinsville, Massachusetts, email to
-          &quot;contact&quot; @ this website.
-        </p>
+      <footer className="text-center text-sm text-zinc-500 border-t-2 border-zinc-600 p-4 flex-shrink-0">
+        {!query.imageSlug && (
+          <p>
+            Christopher Allen Photography, Whitinsville, Massachusetts, email to
+            &quot;contact&quot; @ this website.
+          </p>
+        )}
         <p>
           © {new Date().getFullYear()} Christopher Allen Photography. All rights
           reserved.
         </p>
+        {!query.imageSlug && (
+          <p>
+            Designed and built by{' '}
+            <a
+              href="https://amyfrieson.com"
+              className="hover:text-zinc-400"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Amy Frieson
+            </a>
+          </p>
+        )}
       </footer>
     </div>
   );

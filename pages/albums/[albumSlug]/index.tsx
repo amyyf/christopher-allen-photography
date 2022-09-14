@@ -29,7 +29,7 @@ export default function Album() {
         </h2>
         {data.entries.map((entry) => (
           <div key={entry.fields.visual.fields.title}>
-            <div className="h-full relative">
+            <div className="h-full relative text-transparent hover:text-zinc-200 hover:transition">
               <Link
                 href={`/albums/${albumSlug}/${convertTitleToSlug(
                   entry.fields.title,
@@ -45,9 +45,13 @@ export default function Album() {
                     layout="fill"
                     objectFit="contain"
                     objectPosition={'center'}
+                    className="hover:opacity-50 hover:transition"
                   />
                 </a>
               </Link>
+              <h3 className="text-md absolute top-1/3 left-5">
+                {entry.fields.title}
+              </h3>
             </div>
           </div>
         ))}

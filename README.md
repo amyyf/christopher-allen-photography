@@ -28,6 +28,7 @@
 - [x] Set max-height on grid rows
 - [x] Do draft posts come through in the API? How to separate out test data from real data?
       -> won't do
+- [ ] Prefetch previous and next images
 - [ ] Handling for null entries and images
 - [ ] Finalize layout (footer at botttom of viewport, loaders, errors, grid content) to minimize content shifting
 - [ ] Flatten out data coming back from Contentful to remove that logic from the presentational components?
