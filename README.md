@@ -33,13 +33,13 @@
 - [x] Add swipe navigation
 - [ ] Prefetch previous and next images
 - [ ] Handling for null entries and images
+- [ ] Finalize fonts and color scheme for all components, including error
+      -> update favicon with final font
 - [ ] Flatten out data coming back from Contentful to remove that logic from the presentational components?
       -> nice to have
 - [ ] Possible different mobile and desktop homepage images? (landscape vs portrait dimensions)
 - [ ] Limit number of homepage images that can be published? (`https://www.contentfulcommunity.com/t/- limit-content-entries-by-content-model-type/539/3`)
 - [ ] Contentful credit in footer?
-- [ ] Finalize fonts and color scheme for all components, including error
-      -> update favicon with final font
 - [ ] Remove robots meta tag before going live!!!!
 
 ## Dev instructions

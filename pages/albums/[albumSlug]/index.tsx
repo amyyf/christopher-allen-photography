@@ -23,7 +23,7 @@ export default function Album() {
 
   return (
     <>
-      <section className="grid gap-x-5 gap-y-3 grid-cols-album auto-rows-album place-content-center">
+      <section className="grid gap-x-5 gap-y-3 grid-cols-album grid-rows-album xs:grid-rows-none auto-rows-album place-content-center">
         <h2 className="self-center justify-self-center md:col-start-2 md:row-start-2 text-xl text-zinc-300">
           {data.title}
         </h2>

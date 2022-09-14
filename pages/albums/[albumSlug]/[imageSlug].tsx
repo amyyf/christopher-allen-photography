@@ -35,7 +35,7 @@ export default function ImageWrapper() {
       <div>
         {data?.previousImageSlug && (
           <Link href={`/albums/${albumSlug}/${data.previousImageSlug}`}>
-            <a className="inline-block h-11 w-11">
+            <a className="inline-block m-2.5">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 text-zinc-400 hover:text-zinc-200"
@@ -55,7 +55,7 @@ export default function ImageWrapper() {
         )}
 
         <Link href={`/albums/${albumSlug}`}>
-          <a className="inline-block h-11 w-11">
+          <a className="inline-block m-2.5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6 text-zinc-400 hover:text-zinc-200"
@@ -75,7 +75,7 @@ export default function ImageWrapper() {
 
         {data?.nextImageSlug && (
           <Link href={`/albums/${albumSlug}/${data.nextImageSlug}`}>
-            <a className="inline-block h-11 w-11">
+            <a className="inline-block m-2.5">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 text-zinc-400 hover:text-zinc-200"
