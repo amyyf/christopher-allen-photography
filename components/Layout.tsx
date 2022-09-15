@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
-import Error from './Error';
 import { NavBar } from './NavBar';
 import { useRouter } from 'next/router';
 import { useSiteNavQuery } from '../data/queries';
@@ -15,7 +14,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const pageTitle = usePageTitle(
     pathname,
     query.imageSlug,
-    query.albumSlug,
+    query.gallerySlug,
     data,
   );
 
@@ -54,7 +53,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </Link>
       </h1>
 
-      <NavBar navData={data} currentAlbum={query.albumSlug} />
+      <NavBar navData={data} currentGallery={query.gallerySlug} />
 
       <main className="m-8 mb-28">{children}</main>
 

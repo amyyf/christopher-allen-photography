@@ -3,28 +3,28 @@ import { NavData } from '../types/data';
 export const generatePageTitle = (
   pathname: string,
   imageSlug?: string | string[],
-  albumSlug?: string | string[],
+  gallerySlug?: string | string[],
   data?: NavData[],
 ) => {
   const baseTitle = 'Christopher Allen Photography';
-  const album = data?.find(
-    (album) => convertTitleToSlug(album.title) === albumSlug,
+  const gallery = data?.find(
+    (gallery) => convertTitleToSlug(gallery.title) === gallerySlug,
   );
 
   const contentTitle =
-    // image title, if it exists, takes precedence over album title
+    // image title, if it exists, takes precedence over gallery title
     imageSlug && typeof imageSlug === 'string'
-      ? album?.entryTitles.find(
+      ? gallery?.entryTitles.find(
           (title) =>
             convertTitleToSlug(title.title, title.imageNumber) === imageSlug,
         )?.title
-      : album?.title;
+      : gallery?.title;
 
   switch (pathname) {
     case '/':
       return `${baseTitle}: Home`;
-    case '/albums':
-      return `${baseTitle}: Albums`;
+    case '/galleries':
+      return `${baseTitle}: Galleries`;
     default:
       return contentTitle ? `${baseTitle}: ${contentTitle}` : baseTitle;
   }

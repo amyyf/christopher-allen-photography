@@ -4,26 +4,26 @@ import { convertTitleToSlug } from '../utils';
 
 export const NavBar = ({
   navData,
-  currentAlbum,
+  currentGallery,
 }: {
   navData?: NavData[];
-  currentAlbum?: string | string[];
+  currentGallery?: string | string[];
 }) => {
   return (
     <nav className="flex justify-end flex-wrap gap-x-3 mr-4 md:mr-8">
-      <Link href="/albums">
+      <Link href="/galleries">
         <a className="text-zinc-400 hover:text-zinc-300">Galleries</a>
       </Link>
       <p className="text-zinc-400">|</p>
       {navData?.map((navItem) => {
         const slug = convertTitleToSlug(navItem.title);
         const textClasses =
-          slug === currentAlbum
+          slug === currentGallery
             ? 'text-zinc-300'
             : 'text-zinc-400 hover:text-zinc-300';
 
         return (
-          <Link key={navItem.contentfulId} href={`/albums/${slug}`}>
+          <Link key={navItem.contentfulId} href={`/galleries/${slug}`}>
             <a className={textClasses}>{navItem.title}</a>
           </Link>
         );

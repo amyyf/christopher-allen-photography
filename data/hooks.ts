@@ -7,35 +7,35 @@ import type { NavData } from '../types/data';
 export const usePageTitle = (
   pathname: string,
   imageSlug?: string | string[],
-  albumSlug?: string | string[],
+  gallerySlug?: string | string[],
   navData?: NavData[],
 ) => {
   const [pageTitle, setPageTitle] = useState('');
   useEffect(() => {
-    const title = generatePageTitle(pathname, imageSlug, albumSlug, navData);
+    const title = generatePageTitle(pathname, imageSlug, gallerySlug, navData);
     setPageTitle(title);
-  }, [pathname, imageSlug, albumSlug, navData]);
+  }, [pathname, imageSlug, gallerySlug, navData]);
 
   return pageTitle;
 };
 
 export const useImageNav = (
   router: NextRouter,
-  albumSlug?: string | string[],
+  gallerySlug?: string | string[],
   nextImageSlug?: string,
   previousImageSlug?: string,
 ) =>
   useEffect(() => {
-    if (!albumSlug || !nextImageSlug || !previousImageSlug) return;
+    if (!gallerySlug || !nextImageSlug || !previousImageSlug) return;
 
     const handleArrowEvent = (e: KeyboardEvent) => {
       switch (e.code) {
         case 'ArrowUp':
-          return router.push(`/albums/${albumSlug}`);
+          return router.push(`/galleries/${gallerySlug}`);
         case 'ArrowLeft':
-          return router.push(`/albums/${albumSlug}/${previousImageSlug}`);
+          return router.push(`/galleries/${gallerySlug}/${previousImageSlug}`);
         case 'ArrowRight':
-          return router.push(`/albums/${albumSlug}/${nextImageSlug}`);
+          return router.push(`/galleries/${gallerySlug}/${nextImageSlug}`);
         default:
           return;
       }
@@ -43,4 +43,4 @@ export const useImageNav = (
 
     document.addEventListener('keydown', handleArrowEvent);
     return () => document.removeEventListener('keydown', handleArrowEvent);
-  }, [router, albumSlug, nextImageSlug, previousImageSlug]);
+  }, [router, gallerySlug, nextImageSlug, previousImageSlug]);

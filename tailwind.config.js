@@ -33,13 +33,13 @@ module.exports = {
         ],
       },
       gridTemplateColumns: {
-        album: 'repeat(auto-fit, minmax(200px, 1fr))',
+        gallery: 'repeat(auto-fit, minmax(200px, 1fr))',
       },
       gridTemplateRows: {
-        album: '40px',
+        gallery: '40px',
       },
       gridAutoRows: {
-        album: '200px',
+        gallery: '200px',
       },
     },
   },

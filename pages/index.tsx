@@ -16,7 +16,7 @@ const Home: NextPage = () => {
 
   return (
     <div className="text-center">
-      <Link href="/albums">
+      <Link href="/galleries">
         <a>
           {isError || !data ? (
             <Image alt="A peaceful green field with trees" src={fallbackHome} />

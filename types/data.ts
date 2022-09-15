@@ -1,6 +1,6 @@
 import * as contentful from 'contentful';
 
-type AlbumEntry = {
+type GalleryEntry = {
   description: string;
   title: string;
   visual: contentful.Asset;
@@ -11,9 +11,9 @@ export type HomepagePhoto = {
   image: contentful.Asset;
 };
 
-export type Album = {
+export type Gallery = {
   title: contentful.EntryFields.Text;
-  entries: contentful.Entry<AlbumEntry>[];
+  entries: contentful.Entry<GalleryEntry>[];
 };
 
 export type NavData = {

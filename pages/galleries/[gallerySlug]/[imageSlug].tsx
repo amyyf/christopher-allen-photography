@@ -10,11 +10,16 @@ import { SyntheticEvent } from 'react';
 
 export default function ImageWrapper() {
   const router = useRouter();
-  const { albumSlug, imageSlug } = router.query;
+  const { gallerySlug, imageSlug } = router.query;
 
-  const { isLoading, isError, data } = useImageQuery(imageSlug, albumSlug);
+  const { isLoading, isError, data } = useImageQuery(imageSlug, gallerySlug);
 
-  useImageNav(router, albumSlug, data?.nextImageSlug, data?.previousImageSlug);
+  useImageNav(
+    router,
+    gallerySlug,
+    data?.nextImageSlug,
+    data?.previousImageSlug,
+  );
 
   const handleSwipe = (
     event: SyntheticEvent,
@@ -22,9 +27,11 @@ export default function ImageWrapper() {
   ) => {
     switch (direction) {
       case 'left':
-        return router.push(`/albums/${albumSlug}/${data?.nextImageSlug}`);
+        return router.push(`/galleries/${gallerySlug}/${data?.nextImageSlug}`);
       case 'right':
-        return router.push(`/albums/${albumSlug}/${data?.previousImageSlug}`);
+        return router.push(
+          `/galleries/${gallerySlug}/${data?.previousImageSlug}`,
+        );
       default:
         return;
     }
@@ -33,7 +40,7 @@ export default function ImageWrapper() {
   return (
     <section className="text-center">
       <div>
-        <Link href={`/albums/${albumSlug}/${data?.previousImageSlug}`}>
+        <Link href={`/galleries/${gallerySlug}/${data?.previousImageSlug}`}>
           <a className="inline-block m-2.5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +59,7 @@ export default function ImageWrapper() {
           </a>
         </Link>
 
-        <Link href={`/albums/${albumSlug}`}>
+        <Link href={`/galleries/${gallerySlug}`}>
           <a className="inline-block m-2.5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +78,7 @@ export default function ImageWrapper() {
           </a>
         </Link>
 
-        <Link href={`/albums/${albumSlug}/${data?.nextImageSlug}`}>
+        <Link href={`/galleries/${gallerySlug}/${data?.nextImageSlug}`}>
           <a className="inline-block m-2.5">
             <svg
               xmlns="http://www.w3.org/2000/svg"

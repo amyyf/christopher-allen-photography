@@ -23,15 +23,15 @@ describe('generatePageTitle', () => {
     expect(generated).toEqual(expected);
   });
 
-  it('generates the albums nav page title', () => {
-    const generated = generatePageTitle('/albums');
-    const expected = 'Christopher Allen Photography: Albums';
+  it('generates the galleries nav page title', () => {
+    const generated = generatePageTitle('/galleries');
+    const expected = 'Christopher Allen Photography: Galleries';
     expect(generated).toEqual(expected);
   });
 
-  it('dynamically generates an album page title', () => {
+  it('dynamically generates a gallery page title', () => {
     const generated = generatePageTitle(
-      '/albums/landscapes',
+      '/galleries/landscapes',
       '',
       'landscapes',
       dummyNavData,
@@ -42,7 +42,7 @@ describe('generatePageTitle', () => {
 
   it('dynamically generates an image page title', () => {
     const generated = generatePageTitle(
-      '/albums/landscapes/snowy-lakeside-123',
+      '/galleries/landscapes/snowy-lakeside-123',
       'snowy-lakeside-123',
       'landscapes',
       dummyNavData,

@@ -42,7 +42,7 @@
       -> added Galleries link to nav bar instead
 - [x] Finalize fonts and color scheme for all components, including error
       -> update favicon with final font
-- [ ] Rename Albums to Galleries
+- [x] Rename Albums to Galleries
 - [ ] Remove robots meta tag before going live!!!!
 
 ## Possible future optimizations
