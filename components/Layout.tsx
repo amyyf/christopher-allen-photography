@@ -19,8 +19,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   );
 
   return (
-    /* These page styles position the footer at the bottom of the window when the content is short. */
-    <div className="bg-zinc-900 flex flex-col min-h-screen font-sans">
+    /* These flex styles help position the footer at the bottom of the window. */
+    <div className="font-sans bg-zinc-900 flex flex-col min-h-screen">
       <Head>
         <title>{pageTitle}</title>
         <meta
@@ -55,7 +55,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <NavBar navData={data} currentGallery={query.gallerySlug} />
 
-      <main className="m-8 mb-28">{children}</main>
+      {/* This flex style ensures the main content pushes the footer to the bottom. */}
+      <main className="m-8 mb-28 flex-auto">{children}</main>
 
       <footer className="text-center text-sm text-zinc-500 border-t-2 border-zinc-600 p-4 flex-shrink-0">
         {!query.imageSlug && (
