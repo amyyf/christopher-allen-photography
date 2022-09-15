@@ -106,7 +106,9 @@ export default function ImageWrapper() {
               priority={true}
             />
             {data.description && (
-              <p className="text-zinc-400 text-sm mt-4">{data.description}</p>
+              <p className="text-zinc-400 text-[.8125rem] mt-4 tracking-wide">
+                {data.description}
+              </p>
             )}
           </div>
         </ReactTouchEvents>

@@ -23,20 +23,20 @@ export default function Album() {
 
   return (
     <>
-      <section className="grid gap-x-5 gap-y-3 grid-cols-album grid-rows-album xs:grid-rows-none auto-rows-album place-content-center">
+      <section className="grid gap-x-5 gap-y-3 grid-cols-album grid-rows-album xs:grid-rows-none auto-rows-album place-content-center max-w-screen-xl xl:w-full xl:mx-auto">
         <h2 className="self-center justify-self-center md:col-start-2 md:row-start-2 text-xl text-zinc-300">
           {data.title}
         </h2>
         {data.entries.map((entry) => (
           <div key={entry.fields.visual.fields.title}>
-            <div className="h-full relative text-transparent hover:text-zinc-200 hover:transition">
+            <div className="h-full relative text-transparent hover:text-zinc-200 hover:transition focus-within:text-zinc-100 focus-within:transition">
               <Link
                 href={`/albums/${albumSlug}/${convertTitleToSlug(
                   entry.fields.title,
                   entry.fields.visual.fields.title,
                 )}`}
               >
-                <a>
+                <a className="focus:opacity-50 focus:transition">
                   <Image
                     alt={entry.fields.description}
                     src={`https:${entry.fields.visual.fields.file.url}?fm=jpg&fl=progressive`}

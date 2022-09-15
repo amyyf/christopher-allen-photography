@@ -11,6 +11,10 @@ export const NavBar = ({
 }) => {
   return (
     <nav className="flex justify-end flex-wrap gap-x-3 mr-4 md:mr-8">
+      <Link href="/albums">
+        <a className="text-zinc-400 hover:text-zinc-300">Galleries</a>
+      </Link>
+      <p className="text-zinc-400">|</p>
       {navData?.map((navItem) => {
         const slug = convertTitleToSlug(navItem.title);
         const textClasses =

@@ -48,7 +48,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <h1 className="text-4xl border-b-2 mt-4 border-zinc-600">
         <Link href="/">
-          <a className="ml-4 md:ml-8 text-zinc-400 hover:text-zinc-300 flex flex-wrap gap-x-3 items-end">
+          <a className="ml-4 md:ml-8 text-zinc-400 hover:text-zinc-300 flex flex-wrap gap-x-3 items-end font-serif">
             Christopher Allen <span className="text-2xl">Photography</span>
           </a>
         </Link>
@@ -56,9 +56,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <NavBar navData={data} currentAlbum={query.albumSlug} />
 
-      <main className="m-8 max-w-screen-xl xl:w-full xl:mx-auto flex-auto">
-        {children}
-      </main>
+      <main className="m-8 mb-28">{children}</main>
 
       <footer className="text-center text-sm text-zinc-500 border-t-2 border-zinc-600 p-4 flex-shrink-0">
         {!query.imageSlug && (

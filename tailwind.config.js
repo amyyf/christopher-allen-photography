@@ -12,14 +12,24 @@ module.exports = {
       ...defaultTheme.screens,
     },
     extend: {
+      // font stacks selected from https://www.cssfontstack.com/
       fontFamily: {
         sans: [
-          'Lucida Grande',
-          'Lucida Sans Unicode',
-          'Lucida Sans',
-          'Geneva',
-          'Verdana',
+          'Calibri',
+          'Candara',
+          'Segoe',
+          'Segoe UI',
+          'Optima',
+          'Arial',
           'sans-serif',
+        ],
+        serif: [
+          'Baskerville',
+          'Baskerville Old Face',
+          'Hoefler Text',
+          'Garamond',
+          'Times New Roman',
+          'serif',
         ],
       },
       gridTemplateColumns: {

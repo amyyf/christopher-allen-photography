@@ -36,8 +36,13 @@
 - [x] Handling for null entries and images
 - [x] Contentful credit in footer?
       -> won't do - can't find any mandate for using
-- [ ] Finalize fonts and color scheme for all components, including error
+- [x] Focus styles on album page
+- [x] Grid margin on album page
+- [x] Allow up navigation from album to all albums page
+      -> added Galleries link to nav bar instead
+- [x] Finalize fonts and color scheme for all components, including error
       -> update favicon with final font
+- [ ] Rename Albums to Galleries
 - [ ] Remove robots meta tag before going live!!!!
 
 ## Possible future optimizations
