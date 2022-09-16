@@ -44,7 +44,7 @@
       -> update favicon with final font
 - [x] Rename Albums to Galleries
 - [x] Fix arrow navigation
-- [ ] Remove robots meta tag before going live!!!!
+- [x] Remove robots meta tag before going live!!!!
 
 ## Possible future optimizations
 

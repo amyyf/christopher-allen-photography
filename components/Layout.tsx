@@ -41,8 +41,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           key="og-site-name"
         />
         <link rel="icon" href="/favicon.ico" />
-        {/* TODO: TAKE THIS OFF BEFORE GOING LIVE!!!! */}
-        <meta name="robots" content="noindex, nofollow" />
       </Head>
 
       <h1 className="text-4xl border-b-2 mt-4 border-neutral-600">
@@ -53,7 +51,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </Link>
       </h1>
 
-      <NavBar navData={data} currentGallery={query.gallerySlug} />
+      <NavBar navData={data} currentGallery={query.gallerySlug || pathname} />
 
       {/* This flex style ensures the main content pushes the footer to the bottom. */}
       <main className="m-8 mb-28 flex-auto">{children}</main>
