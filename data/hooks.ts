@@ -28,7 +28,10 @@ export const useImageNav = (
   useEffect(() => {
     if (!gallerySlug || !nextImageSlug || !previousImageSlug) return;
 
+    let keysPressed: string[] = [];
     const handleArrowEvent = (e: KeyboardEvent) => {
+      keysPressed.push(e.key);
+      if (keysPressed.length > 1) return; // prevent overriding multiple keypress events, i.e. browser navigation
       switch (e.code) {
         case 'ArrowUp':
           return router.push(`/galleries/${gallerySlug}`);

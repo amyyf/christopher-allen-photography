@@ -44,7 +44,7 @@ export default function ImageWrapper() {
           <a className="inline-block m-2.5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-zinc-400 hover:text-zinc-200"
+              className="h-6 w-6 text-neutral-400 hover:text-neutral-200"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -63,7 +63,7 @@ export default function ImageWrapper() {
           <a className="inline-block m-2.5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-zinc-400 hover:text-zinc-200"
+              className="h-6 w-6 text-neutral-400 hover:text-neutral-200"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -82,7 +82,7 @@ export default function ImageWrapper() {
           <a className="inline-block m-2.5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-zinc-400 hover:text-zinc-200"
+              className="h-6 w-6 text-neutral-400 hover:text-neutral-200"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -111,9 +111,10 @@ export default function ImageWrapper() {
               width={data.asset.fields.file.details.image?.width}
               height={data.asset.fields.file.details.image?.height}
               priority={true}
+              className="border-neutral-400 border-[1px] border-solid"
             />
             {data.description && (
-              <p className="text-zinc-400 text-[.8125rem] mt-4 tracking-wide">
+              <p className="text-neutral-400 text-[.8125rem] mt-4 tracking-wide">
                 {data.description}
               </p>
             )}

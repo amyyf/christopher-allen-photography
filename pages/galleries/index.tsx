@@ -17,7 +17,7 @@ export default function GalleryNav() {
     <section className="grid grid-cols-gallery gap-5 max-w-screen-xl xl:w-full xl:mx-auto">
       {data.map((galleryData) => (
         <div
-          className="relative text-transparent hover:text-zinc-200 hover:transition focus-within:text-zinc-100 focus-within:transition"
+          className="relative text-transparent hover:text-neutral-200 hover:transition focus-within:text-neutral-100 focus-within:transition"
           key={galleryData.contentfulId}
         >
           <Link href={`/galleries/${convertTitleToSlug(galleryData.title)}`}>

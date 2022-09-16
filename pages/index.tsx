@@ -27,6 +27,7 @@ const Home: NextPage = () => {
               src={`https:${data.fields.image.fields.file.url}`}
               width={data.fields.image.fields.file.details.image?.width}
               height={data.fields.image.fields.file.details.image?.height}
+              className="border-neutral-400 border-[1px] border-solid"
             />
           )}
         </a>

@@ -6,6 +6,8 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
   ],
+  // using important mainly to override Next's default image styling and add a border to images
+  important: true,
   theme: {
     screens: {
       xs: '484px',

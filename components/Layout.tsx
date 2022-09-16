@@ -20,7 +20,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     /* These flex styles help position the footer at the bottom of the window. */
-    <div className="font-sans bg-zinc-900 flex flex-col min-h-screen">
+    <div className="font-sans bg-neutral-900 flex flex-col min-h-screen">
       <Head>
         <title>{pageTitle}</title>
         <meta
@@ -45,9 +45,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <meta name="robots" content="noindex, nofollow" />
       </Head>
 
-      <h1 className="text-4xl border-b-2 mt-4 border-zinc-600">
+      <h1 className="text-4xl border-b-2 mt-4 border-neutral-600">
         <Link href="/">
-          <a className="ml-4 md:ml-8 text-zinc-400 hover:text-zinc-300 flex flex-wrap gap-x-3 items-end font-serif">
+          <a className="ml-4 md:ml-8 text-neutral-400 hover:text-neutral-300 flex flex-wrap gap-x-3 items-end font-serif tracking-[.5px]">
             Christopher Allen <span className="text-2xl">Photography</span>
           </a>
         </Link>
@@ -58,7 +58,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       {/* This flex style ensures the main content pushes the footer to the bottom. */}
       <main className="m-8 mb-28 flex-auto">{children}</main>
 
-      <footer className="text-center text-sm text-zinc-500 border-t-2 border-zinc-600 p-4 flex-shrink-0">
+      <footer className="text-center text-sm text-neutral-500 border-t-2 border-neutral-600 p-4 flex-shrink-0">
         {!query.imageSlug && (
           <p>
             Christopher Allen Photography, Whitinsville, Massachusetts, email to
@@ -71,10 +71,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         </p>
         {!query.imageSlug && (
           <p>
-            Designed and built by{' '}
+            Website by{' '}
             <a
               href="https://amyfrieson.com"
-              className="hover:text-zinc-400"
+              className="hover:text-neutral-400"
               target="_blank"
               rel="noopener noreferrer"
             >
