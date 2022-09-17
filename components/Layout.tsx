@@ -18,6 +18,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     data,
   );
 
+  const showFullFooter = pathname === '/' || pathname === '/galleries';
+
   return (
     /* These flex styles help position the footer at the bottom of the window. */
     <div className="font-sans bg-neutral-900 flex flex-col min-h-screen">
@@ -57,7 +59,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <main className="m-8 mb-28 flex-auto">{children}</main>
 
       <footer className="text-center text-sm text-neutral-500 border-t-2 border-neutral-600 p-4 flex-shrink-0">
-        {!query.imageSlug && (
+        {showFullFooter && (
           <p>
             Christopher Allen Photography, Whitinsville, Massachusetts, email to
             &quot;contact&quot; @ this website.
@@ -67,7 +69,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           © {new Date().getFullYear()} Christopher Allen Photography. All rights
           reserved.
         </p>
-        {!query.imageSlug && (
+        {showFullFooter && (
           <p>
             Website by{' '}
             <a
