@@ -1,4 +1,8 @@
-# To-Do
+# Christopher Allen Photography
+
+A portfolio site developed with Next.js.
+
+## To-Do
 
 - [x] Get Contentful data once (React Query wrapper?)
 - [x] Dynamic routing
