@@ -4,8 +4,8 @@ import type { Gallery, HomepagePhoto, NavData } from '../types/data';
 import { convertTitleToSlug } from '../utils';
 
 const client = contentful.createClient({
-  space: 'cwx5ke1iw7ue',
-  accessToken: 'kpL8Ke1IaByl2DBbXoCorhKFs0gyt7R4YmzUyLXl2-I',
+  space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE || '',
+  accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESSTOKEN || '',
 });
 
 export const BLUR_DATA_URL =
