@@ -8,11 +8,16 @@ const client = contentful.createClient({
   accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESSTOKEN || '',
 });
 
+const getClient = () => {
+  if (!client) throw new Error('Contentful client could not be found');
+  return client;
+};
+
 export const BLUR_DATA_URL =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNsqAcAAYUBAdpOiIkAAAAASUVORK5CYII=';
 
 export async function getHomepagePhoto() {
-  const entry = await client.getEntries<HomepagePhoto>({
+  const entry = await getClient().getEntries<HomepagePhoto>({
     content_type: 'homepagePhoto',
     limit: 1,
   });
@@ -20,7 +25,7 @@ export async function getHomepagePhoto() {
 }
 
 export async function getSiteNav(): Promise<NavData[]> {
-  const galleries = await client.getEntries<Gallery>({
+  const galleries = await getClient().getEntries<Gallery>({
     content_type: 'album', // note: this content type was renamed to 'gallery' but the Contentful id could not be updated
     select: 'fields.title,sys.id,fields.entries',
     order: 'fields.order',
@@ -93,7 +98,7 @@ export async function getGalleryData(
     (item) => convertTitleToSlug(item.title) === gallerySlug,
   )?.contentfulId;
   if (!galleryId) throw new Error('Gallery ID could not be found');
-  const data = await client.getEntry<Gallery>(galleryId);
+  const data = await getClient().getEntry<Gallery>(galleryId);
   return {
     title: data.fields.title,
     entries: data.fields.entries,
@@ -117,7 +122,7 @@ export async function getImage(
   );
   if (!imageEntry?.fields.visual.sys.id)
     return Promise.reject(new Error('Image ID could not be found'));
-  const asset = await client.getAsset(imageEntry.fields.visual.sys.id);
+  const asset = await getClient().getAsset(imageEntry.fields.visual.sys.id);
   const { previousImageSlug, nextImageSlug } = getPrevAndNextImages(
     galleryData,
     imageEntry.fields.visual.sys.id,
