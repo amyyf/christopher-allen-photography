@@ -18,17 +18,17 @@ const Home: NextPage = () => {
     <section className="grid grid-cols-gallery gap-5 max-w-screen-xl xl:w-full xl:mx-auto">
       {data.map((galleryData) => (
         <div
-          className="relative text-transparent hover:text-neutral-200 hover:transition focus-within:text-neutral-100 focus-within:transition"
+          className="relative text-neutral-200 focus-within:text-neutral-100 focus-within:transition"
           key={galleryData.contentfulId}
         >
           <Link href={`/galleries/${convertTitleToSlug(galleryData.title)}`}>
-            <a className="block relative focus:transition focus:opacity-50 focus:outline-none">
+            <a className="block relative opacity-75 focus:transition hover:transition focus:opacity-40 hover:opacity-40">
               <Image
                 alt={galleryData.firstEntry.description}
                 src={`https:${galleryData.firstEntry.url}`}
                 height={galleryData.firstEntry.height}
                 width={galleryData.firstEntry.width}
-                className="hover:opacity-50 hover:transition"
+                className="opacity-75 focus:transition hover:transition focus:opacity-40 hover:opacity-40"
               />
             </a>
           </Link>

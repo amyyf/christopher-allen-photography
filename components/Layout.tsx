@@ -45,9 +45,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1 className="text-4xl border-b-2 mt-4 border-neutral-600">
+      <h1 className="text-4xl border-b-2 my-4 border-neutral-600">
         <Link href="/">
-          <a className="ml-4 md:ml-8 text-neutral-400 hover:text-neutral-300 flex flex-wrap gap-x-3 items-end font-serif tracking-[.5px]">
+          <a className="mb-4 ml-4 md:ml-8 text-neutral-400 hover:text-neutral-300 flex flex-wrap gap-x-3 items-end font-serif tracking-[.5px]">
             Christopher Allen <span className="text-2xl">Photography</span>
           </a>
         </Link>
