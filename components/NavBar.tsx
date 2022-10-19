@@ -99,8 +99,10 @@ export const NavBar = ({
         </div>
       </div>
       <p className="text-neutral-400">|</p>
-      <Link href="/about">
-        <a className={getActiveLinkClasses('/about', currentGallery)}>About</a>
+      <Link href="/contact">
+        <a className={getActiveLinkClasses('/contact', currentGallery)}>
+          Contact
+        </a>
       </Link>
     </nav>
   );

@@ -1,6 +1,6 @@
 import * as contentful from 'contentful';
 
-export type AboutPagePhoto = {
+export type ContactPagePhoto = {
   title: contentful.EntryFields.Text;
   image: contentful.Asset;
 };

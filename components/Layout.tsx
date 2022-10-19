@@ -18,8 +18,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     data,
   );
 
-  // do not show full footer on single image pages
-  const showFullFooter = !query.imageSlug;
+  // Only show full footer on select pages
+  const showFullFooter = pathname === '/' || pathname === '/contact';
 
   return (
     /* These flex styles help position the footer at the bottom of the window. */

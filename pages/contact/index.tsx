@@ -1,26 +1,29 @@
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
-import { getAboutPagePhoto } from '../../data/contentful';
+import { getContactPagePhoto } from '../../data/contentful';
 
-export default function About() {
+export default function Contact() {
   const { data, isError, isLoading } = useQuery(
     ['homepagePhoto'],
-    getAboutPagePhoto,
+    getContactPagePhoto,
   );
 
   return (
     <>
       <div className="text-neutral-400 space-y-4 max-w-2xl mx-auto">
-        {/* TODO: get this text dynamically from Contentful? */}
+        {/* TODO: get this text dynamically from Contentful, use below as fallback */}
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
-          commodi quisquam, cupiditate quod aliquid incidunt praesentium illum
-          optio quo, mollitia est quaerat quis odio totam odit non cumque ut.
-          Pariatur!
+          Christopher Allen Photography is based in Whitinsville, town of
+          Northbridge, Massachusetts, USA. I fell in love with photography in
+          high school and college, processing in black and white. I photograph
+          landscapes, people, weddings, plays, dance, and orchestras. I&apos;ve
+          worked professionally for{' '}
+          <a href="https://www.telegram.com/">telegram.com</a>.
         </p>
+        <p>Please enjoy some of my favorite images on this site!</p>
         <p>
-          Christopher Allen Photography, Whitinsville, Massachusetts, email to
-          &quot;contact&quot; @ this website.
+          To contact me, send an email to &quot;contact&quot; at
+          christopherallen.photography.
         </p>
       </div>
       {!isLoading && !isError && (

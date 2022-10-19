@@ -1,6 +1,6 @@
 import * as contentful from 'contentful';
 
-import type { AboutPagePhoto, Gallery, NavData } from '../types/data';
+import type { ContactPagePhoto, Gallery, NavData } from '../types/data';
 import { convertTitleToSlug } from '../utils';
 
 const client = contentful.createClient({
@@ -13,8 +13,8 @@ const getClient = () => {
   return client;
 };
 
-export async function getAboutPagePhoto() {
-  const entry = await getClient().getEntries<AboutPagePhoto>({
+export async function getContactPagePhoto() {
+  const entry = await getClient().getEntries<ContactPagePhoto>({
     // deprecated: this photo type used to be used on the homepage only. legacy name in Contentful structure.
     content_type: 'homepagePhoto',
     limit: 1,
