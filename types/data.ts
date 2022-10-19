@@ -6,11 +6,6 @@ type GalleryEntry = {
   visual: contentful.Asset;
 };
 
-export type HomepagePhoto = {
-  title: contentful.EntryFields.Text;
-  image: contentful.Asset;
-};
-
 export type Gallery = {
   title: contentful.EntryFields.Text;
   entries: contentful.Entry<GalleryEntry>[];

@@ -1,6 +1,6 @@
 import * as contentful from 'contentful';
 
-import type { Gallery, HomepagePhoto, NavData } from '../types/data';
+import type { Gallery, NavData } from '../types/data';
 import { convertTitleToSlug } from '../utils';
 
 const client = contentful.createClient({
@@ -15,14 +15,6 @@ const getClient = () => {
 
 export const BLUR_DATA_URL =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNsqAcAAYUBAdpOiIkAAAAASUVORK5CYII=';
-
-export async function getHomepagePhoto() {
-  const entry = await getClient().getEntries<HomepagePhoto>({
-    content_type: 'homepagePhoto',
-    limit: 1,
-  });
-  return entry.items[0];
-}
 
 export async function getSiteNav(): Promise<NavData[]> {
   const galleries = await getClient().getEntries<Gallery>({
