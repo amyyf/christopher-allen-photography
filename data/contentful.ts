@@ -1,6 +1,6 @@
 import * as contentful from 'contentful';
 
-import type { Gallery, NavData } from '../types/data';
+import type { AboutPagePhoto, Gallery, NavData } from '../types/data';
 import { convertTitleToSlug } from '../utils';
 
 const client = contentful.createClient({
@@ -12,6 +12,15 @@ const getClient = () => {
   if (!client) throw new Error('Contentful client could not be found');
   return client;
 };
+
+export async function getAboutPagePhoto() {
+  const entry = await getClient().getEntries<AboutPagePhoto>({
+    // deprecated: this photo type used to be used on the homepage only. legacy name in Contentful structure.
+    content_type: 'homepagePhoto',
+    limit: 1,
+  });
+  return entry.items[0];
+}
 
 export const BLUR_DATA_URL =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNsqAcAAYUBAdpOiIkAAAAASUVORK5CYII=';

@@ -1,5 +1,10 @@
 import * as contentful from 'contentful';
 
+export type AboutPagePhoto = {
+  title: contentful.EntryFields.Text;
+  image: contentful.Asset;
+};
+
 type GalleryEntry = {
   description: string;
   title: string;
