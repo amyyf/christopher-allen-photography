@@ -22,17 +22,17 @@ const Home: NextPage = () => {
           key={galleryData.contentfulId}
         >
           <Link href={`/galleries/${convertTitleToSlug(galleryData.title)}`}>
-            <a className="block relative opacity-75 focus:transition hover:transition focus:opacity-40 hover:opacity-40">
+            <a className="block relative focus:transition hover:transition focus:opacity-75 hover:opacity-75">
               <Image
                 alt={galleryData.firstEntry.description}
                 src={`https:${galleryData.firstEntry.url}`}
                 height={galleryData.firstEntry.height}
                 width={galleryData.firstEntry.width}
-                className="opacity-75 focus:transition hover:transition focus:opacity-40 hover:opacity-40"
+                className="focus:transition hover:transition focus:opacity-75 hover:opacity-75"
               />
             </a>
           </Link>
-          <h2 className="text-lg absolute top-1/3 left-5">
+          <h2 className="text-lg px-2 absolute top-1/3 left-5 bg-neutral-900 opacity-80 shadow-[0_0_10px_5px] shadow-neutral-900 pointer-events-none">
             {galleryData.title}
           </h2>
         </div>

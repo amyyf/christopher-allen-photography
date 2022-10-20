@@ -49,7 +49,7 @@ export default function Gallery() {
                   />
                 </a>
               </Link>
-              <h3 className="text-md absolute top-1/3 left-5">
+              <h3 className="pointer-events-none text-md absolute top-1/3 left-5">
                 {entry.fields.title}
               </h3>
             </div>
