@@ -18,7 +18,14 @@ export default function Contact() {
           high school and college, processing in black and white. I photograph
           landscapes, people, weddings, plays, dance, and orchestras. I&apos;ve
           worked professionally for{' '}
-          <a href="https://www.telegram.com/">telegram.com</a>.
+          <a
+            href="https://www.telegram.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            telegram.com
+          </a>
+          .
         </p>
         <p>Please enjoy some of my favorite images on this site!</p>
         <p>
