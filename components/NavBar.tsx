@@ -1,5 +1,12 @@
 import Link from 'next/link';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import {
+  Dispatch,
+  MutableRefObject,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import type { NavData } from '../types/data';
 import { convertTitleToSlug } from '../utils';
 
@@ -17,24 +24,6 @@ const toggleDropdown = (setState: Dispatch<SetStateAction<boolean>>) => {
   setState((prevState) => !prevState);
 };
 
-// TODO: set so click outside of menu closes it. double-check keyboard nav and aria
-// const listenForOutsideClick = (e, dropdownOpen, setState) => {
-//   console.log(
-//     'listening',
-//     !e.target.closest('.relative'),
-//     !e.target.matches('.relative'),
-//   );
-//   // (!e.target.closest('.relative') || !e.target.matches('.relative'))
-//   console.log('setting');
-//   if (
-//     dropdownOpen &&
-//     !e.target.closest('.relative') &&
-//     !e.target.matches('.relative')
-//   ) {
-//     return toggleDropdown(setState);
-//   }
-// };
-
 export const NavBar = ({
   navData,
   currentGallery,
@@ -43,6 +32,8 @@ export const NavBar = ({
   currentGallery?: string | string[];
 }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const menuContainer = useRef<HTMLDivElement | null>(null);
+
   const dropdownContainerClasses = dropdownOpen
     ? 'block absolute z-10 bg-neutral-900 min-w-max	px-4 pb-3'
     : 'hidden';
@@ -51,20 +42,27 @@ export const NavBar = ({
     ? 'rotate-90 transition'
     : 'rotate-0 transition';
 
-  // useEffect(() => {
-  //   if (dropdownOpen) {
-  //     document.addEventListener('click', (e) =>
-  //       listenForOutsideClick(e, dropdownOpen, setDropdownOpen),
-  //     );
-  //   }
-  //   return () => {
-  //     document.removeEventListener('click', () => listenForOutsideClick);
-  //   };
-  // }, [dropdownOpen, setDropdownOpen]);
+  useEffect(() => {
+    // Handling so a click outside of the menu closes it
+    const listenForOutsideClick = (e: MouseEvent) => {
+      if (
+        e.target instanceof HTMLElement &&
+        !menuContainer.current?.contains(e.target)
+      ) {
+        return toggleDropdown(setDropdownOpen);
+      }
+    };
+    if (dropdownOpen) {
+      document.addEventListener('click', listenForOutsideClick);
+    }
+    return () => {
+      document.removeEventListener('click', listenForOutsideClick);
+    };
+  }, [menuContainer, dropdownOpen, setDropdownOpen]);
 
   return (
     <nav className="flex justify-end flex-wrap gap-x-3 mr-4 md:mr-8">
-      <div className="relative">
+      <div className="relative" ref={menuContainer}>
         <button
           onClick={() => toggleDropdown(setDropdownOpen)}
           className={`flex gap-2 items-center ${getActiveLinkClasses(
