@@ -32,7 +32,7 @@ export default function Contact() {
           To contact me:{' '}
           <a
             className="hover:text-neutral-300"
-            href="mailto:contact@christopherallen.photography"
+            href="mailto:contact@christopherallen.photography?subject=Inquiry%20from%20website"
           >
             contact@christopherallen.photography
           </a>
