@@ -32,7 +32,7 @@ const Home: NextPage = () => {
               />
             </a>
           </Link>
-          <h2 className="text-lg px-2 absolute top-1/3 left-5 bg-neutral-900 opacity-80 shadow-[0_0_10px_5px] shadow-neutral-900 pointer-events-none">
+          <h2 className="text-lg px-2 absolute top-1/3 left-5 bg-neutral-900 opacity-80 pointer-events-none">
             {galleryData.title}
           </h2>
         </div>
