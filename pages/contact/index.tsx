@@ -29,8 +29,13 @@ export default function Contact() {
         </p>
         <p>Please enjoy some of my favorite images on this site!</p>
         <p>
-          To contact me, send an email to &quot;contact&quot; at
-          christopherallen.photography.
+          To contact me:{' '}
+          <a
+            className="hover:text-neutral-300"
+            href="mailto:contact@christopherallen.photography"
+          >
+            contact@christopherallen.photography
+          </a>
         </p>
       </div>
       {!isLoading && !isError && (
