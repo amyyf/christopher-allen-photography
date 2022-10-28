@@ -1,8 +1,9 @@
 import * as contentful from 'contentful';
+import { Document } from '@contentful/rich-text-types';
 
-export type ContactPagePhoto = {
-  title: contentful.EntryFields.Text;
+export type ContactPageContent = {
   image: contentful.Asset;
+  textBlock: Document;
 };
 
 type GalleryEntry = {

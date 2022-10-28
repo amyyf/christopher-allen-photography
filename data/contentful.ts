@@ -1,6 +1,6 @@
 import * as contentful from 'contentful';
 
-import type { ContactPagePhoto, Gallery, NavData } from '../types/data';
+import type { ContactPageContent, Gallery, NavData } from '../types/data';
 import { convertTitleToSlug } from '../utils';
 
 const client = contentful.createClient({
@@ -13,13 +13,15 @@ const getClient = () => {
   return client;
 };
 
-export async function getContactPagePhoto() {
-  const entry = await getClient().getEntries<ContactPagePhoto>({
-    // deprecated: this photo type used to be used on the homepage only. legacy name in Contentful structure.
-    content_type: 'homepagePhoto',
+export async function getContactPageContent() {
+  const entry = await getClient().getEntries<ContactPageContent>({
+    content_type: 'contactPage',
     limit: 1,
   });
-  return entry.items[0];
+  return {
+    image: entry.items[0].fields.image,
+    textBlock: entry.items[0].fields.textBlock,
+  };
 }
 
 export const BLUR_DATA_URL =
