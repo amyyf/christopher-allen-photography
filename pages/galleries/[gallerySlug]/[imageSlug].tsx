@@ -1,25 +1,17 @@
-import { NextRouter, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
 import Loading from '../../../components/Loading';
 import Error from '../../../components/Error';
 import { useImageQuery } from '../../../data/queries';
-import { useImageNav } from '../../../data/hooks';
 import ReactTouchEvents from 'react-touch-events';
-import { SyntheticEvent } from 'react';
+import { KeyboardEventHandler, SyntheticEvent, useEffect, useRef } from 'react';
 
 export default function ImageWrapper() {
   const router = useRouter();
   const { gallerySlug, imageSlug } = router.query;
 
   const { isLoading, isError, data } = useImageQuery(imageSlug, gallerySlug);
-
-  useImageNav(
-    router,
-    gallerySlug,
-    data?.nextImageSlug,
-    data?.previousImageSlug,
-  );
 
   const handleSwipe = (
     event: SyntheticEvent,
@@ -37,8 +29,37 @@ export default function ImageWrapper() {
     }
   };
 
+  const handleArrowEvent: KeyboardEventHandler<HTMLElement> = (e) => {
+    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
+    switch (e.code) {
+      case 'ArrowUp':
+        return router.push(`/galleries/${gallerySlug}`);
+      case 'ArrowLeft':
+        return router.push(
+          `/galleries/${gallerySlug}/${data?.previousImageSlug}`,
+        );
+      case 'ArrowRight':
+        return router.push(`/galleries/${gallerySlug}/${data?.nextImageSlug}`);
+      default:
+        return;
+    }
+  };
+
+  let sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!isLoading) {
+      sectionRef.current?.focus();
+    }
+  }, [isLoading]);
+
   return (
-    <section className="text-center">
+    <section
+      className="text-center focus:outline-none"
+      tabIndex={-1}
+      onKeyDown={(e) => handleArrowEvent(e)}
+      ref={sectionRef}
+    >
       <div>
         <Link href={`/galleries/${gallerySlug}/${data?.previousImageSlug}`}>
           <a className="inline-block m-2.5">
